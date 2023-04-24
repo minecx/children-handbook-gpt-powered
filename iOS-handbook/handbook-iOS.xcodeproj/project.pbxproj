@@ -11,6 +11,7 @@
 		C4D99E4929F605D700FEFF0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D99E4829F605D700FEFF0B /* ContentView.swift */; };
 		C4D99E4B29F605D800FEFF0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D99E4A29F605D800FEFF0B /* Assets.xcassets */; };
 		C4D99E4E29F605D800FEFF0B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */; };
+		C4E48C6129F6C54B00973764 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E48C6029F6C54B00973764 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		C4D99E4829F605D700FEFF0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C4D99E4A29F605D800FEFF0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C4E48C6029F6C54B00973764 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */,
 				C4D99E4829F605D700FEFF0B /* ContentView.swift */,
+				C4E48C6029F6C54B00973764 /* HomeView.swift */,
 				C4D99E4A29F605D800FEFF0B /* Assets.xcassets */,
 				C4D99E4C29F605D800FEFF0B /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E48C6129F6C54B00973764 /* HomeView.swift in Sources */,
 				C4D99E4929F605D700FEFF0B /* ContentView.swift in Sources */,
 				C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */,
 			);
