@@ -57,7 +57,7 @@ struct HomeView: View {
                 HStack(spacing: geneticPadding) {
                     ForEach(0..<buttonStates.count) { index in
                         Button(action: {
-                            bookCategory(index: index)
+                            switchCategory(index: index)
                         }) {
                             Text(bookCategories[index])
                                 .foregroundColor(buttonStates[index] ? Color.blue : ourGray)
@@ -80,7 +80,7 @@ struct HomeView: View {
         print("see all book button")
     }
     
-    func bookCategory(index: Int) {
+    func switchCategory(index: Int) {
         print("book category: \(bookCategories[index])")
         if (!buttonStates[index]) { // we were not selected
             buttonStates = Array(repeating: false, count: buttonStates.count)
