@@ -19,7 +19,22 @@ let bookCategories = [
     "Diversity & Inclusion",
     "Travel & Adventure"
 ]
-
+let books = [
+    "sample_book1",
+    "sample_book2",
+    "sample_book3",
+    "sample_book1",
+    "sample_book2",
+    "sample_book3",
+]
+let musics = [
+    "sample_music1",
+    "sample_music2",
+    "sample_music3",
+    "sample_music1",
+    "sample_music2",
+    "sample_music3",
+]
 
 struct HomeView: View {
     @State private var buttonStates = Array(repeating: false, count: bookCategories.count)
@@ -27,10 +42,9 @@ struct HomeView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Hello, User!")
+                Text("Hello, \nUser!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .padding(.top, 50)
                 
                 Spacer()
                 
@@ -69,7 +83,70 @@ struct HomeView: View {
             
             ScrollView(.horizontal) {
                 HStack(spacing: geneticPadding) {
-                    Text("12")
+                    ForEach(0..<books.count) { index in
+                        Button(action: {
+                            print("hit")
+                        }) {
+                            Image(books[index])
+                        }
+                    }
+                }
+            }
+            .padding(.horizontal)
+            
+            Text("Continue Reading")
+                .font(.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                // padding left
+                .padding(.leading)
+            
+            Text("TODO: should be hidden if none found")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+            
+            // TODO: hide if none found in history
+            ScrollView(.horizontal) {
+                HStack(spacing: geneticPadding) {
+                    ForEach(1..<5) { index in
+                        Button(action: {
+                            print("hit")
+                        }) {
+                            Image(books[index])
+                        }
+                    }
+                }
+            }
+            .padding(.horizontal)
+            
+            HStack {
+                Text("Music Ignites")
+                    .font(.title)
+                
+                Spacer()
+                
+                Button(action: {
+                    seeAllMusic()
+                }) {
+                    Text("See All")
+                        .foregroundColor(ourGray)
+                }
+            }
+            .padding(.horizontal)
+            
+            ScrollView(.horizontal) {
+                HStack(spacing: geneticPadding) {
+                    ForEach(0..<musics.count) { index in
+                        VStack {
+                            Button(action: {
+                                print("hit")
+                            }) {
+                                Image(musics[index])
+                            }
+                            
+                            // TODO: change song name
+                            Text("song")
+                        }
+                    }
                 }
             }
             .padding(.horizontal)
@@ -77,17 +154,16 @@ struct HomeView: View {
     }
     
     func seeAllBooks() {
-        print("see all book button")
+        print("tapped see all book button")
+    }
+    
+    func seeAllMusic() {
+        print("tapped see all music button")
     }
     
     func switchCategory(index: Int) {
         print("book category: \(bookCategories[index])")
-        if (!buttonStates[index]) { // we were not selected
-            buttonStates = Array(repeating: false, count: buttonStates.count)
-            buttonStates[index] = true
-        } else { // we were
-            buttonStates[index] = false
-        }
+        buttonStates[index].toggle()
     }
 }
 
