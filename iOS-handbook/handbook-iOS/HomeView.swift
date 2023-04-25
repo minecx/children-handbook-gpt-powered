@@ -35,14 +35,15 @@ let musics = [
     "sample_music2",
     "sample_music3",
 ]
+let username = "Userrrr"
 
 struct HomeView: View {
     @State private var buttonStates = Array(repeating: false, count: bookCategories.count)
     
     var body: some View {
-        VStack {
+        ScrollView(.vertical) {
             HStack {
-                Text("Hello, \nUser!")
+                Text("Hello, \n\(username)!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 

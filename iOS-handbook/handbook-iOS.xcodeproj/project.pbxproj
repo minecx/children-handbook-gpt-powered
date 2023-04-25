@@ -19,7 +19,8 @@
 
 /* Begin PBXFileReference section */
 		70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatgptView.swift; sourceTree = "<group>"; };
-		70B8DA0429F7615B00F37B25 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		70B8DA0429F7615B00F37B25 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Config.swift; path = "handbook-iOS/Config.swift"; sourceTree = SOURCE_ROOT; };
+		C459F6A729F7716500C24536 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = ../../../../../../Downloads/Config.swift; sourceTree = "<group>"; };
 		C4D99E4329F605D700FEFF0B /* handbook-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "handbook-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handbook_iOSApp.swift; sourceTree = "<group>"; };
 		C4D99E4829F605D700FEFF0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +74,7 @@
 		C4D99E4C29F605D800FEFF0B /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				C459F6A729F7716500C24536 /* Config.swift */,
 				C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
