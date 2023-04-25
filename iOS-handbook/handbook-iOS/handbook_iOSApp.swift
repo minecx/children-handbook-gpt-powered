@@ -12,7 +12,8 @@ struct handbook_iOSApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-            MovingBubblesView()
+//            MovingBubblesView()
+            OnboardingView()
         }
     }
 }

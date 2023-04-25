@@ -11,6 +11,9 @@ struct OnboardingView: View {
     
     @State private var backgroundOffset: CGFloat = 0
     
+    @State private var showSignupView:Bool = false
+    @State private var showLoginView:Bool = false
+    
     var body: some View {
         GeometryReader { geo in
             HStack(spacing: 0){
@@ -114,16 +117,16 @@ struct OnboardingView: View {
             )
             HStack{
                 Circle()
-                    .fill(self.backgroundOffset == 0 ? Color("OnboardingSecColor1") : Color("LightGrayColor"))
-                    .frame(width: self.backgroundOffset == 0 ? 18: 12, height: self.backgroundOffset == 0 ? 20 : 12)
+                    .fill(self.backgroundOffset == 0 ? Color("OnboardingSecColor1") : Color.white.opacity(0.6))
+                    .frame(width: self.backgroundOffset == 0 ? 15: 12, height: self.backgroundOffset == 0 ? 15 : 12)
                 
                 Circle()
-                    .fill(self.backgroundOffset == 1 ? Color("OnboardingSecColor2") : Color("LightGrayColor"))
-                    .frame(width: self.backgroundOffset == 1 ? 18: 12, height: self.backgroundOffset == 1 ? 20 : 12)
+                    .fill(self.backgroundOffset == 1 ? Color("OnboardingSecColor2") : Color.white.opacity(0.6))
+                    .frame(width: self.backgroundOffset == 1 ? 15: 12, height: self.backgroundOffset == 1 ? 15 : 12)
                 
                 Circle()
-                    .fill(self.backgroundOffset == 2 ? Color("OnboardingSecColor3") : Color("LightGrayColor"))
-                    .frame(width: self.backgroundOffset == 2 ? 18: 12, height: self.backgroundOffset == 2 ? 20 : 12)
+                    .fill(self.backgroundOffset == 2 ? Color("OnboardingSecColor3") : Color.white.opacity(0.6))
+                    .frame(width: self.backgroundOffset == 2 ? 15: 12, height: self.backgroundOffset == 2 ? 15 : 12)
             }
             .animation(Animation.easeInOut(duration: 0.5), value: -(self.backgroundOffset * geo.size.width))
             .position(x: geo.size.width/2, y: geo.size.height * 0.65)
@@ -139,7 +142,7 @@ struct OnboardingView: View {
                     )
                 HStack(spacing: 0){
                     Button {
-                        //TODO:
+                        showSignupView.toggle()
                     } label: {
                         Text("Sign up")
                             .font(.system(size: 17, weight: .bold))
@@ -147,13 +150,24 @@ struct OnboardingView: View {
                             .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.08)
                             .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
                     }
+                    .sheet(isPresented: $showSignupView) {
+                        SignupView()
+                            .presentationDetents([.medium, .large])
+                            .presentationDragIndicator(.visible)
+                    }
+                    
                     Button {
-                        //TODO:
+                        showLoginView.toggle()
                     } label: {
                         Text("Log in")
                             .font(.system(size: 17, weight: .bold))
                             .foregroundColor(Color("FontColor1"))
                             .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.08)
+                    }
+                    .sheet(isPresented: $showLoginView) {
+                        LoginView()
+                            .presentationDetents([.large])
+                            .presentationDragIndicator(.visible)
                     }
                 }
             }
