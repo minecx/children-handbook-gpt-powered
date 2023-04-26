@@ -2,20 +2,46 @@
 //  ContentView.swift
 //  handbook-iOS
 //
-//  Created by Bob on 4/23/23.
+//  Created by Cecilia Chen on 4/26/23.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab: Tab = .discover
+    
+    init() {
+        UITabBar.appearance().isHidden = true
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack{
+            VStack{
+                TabView(selection: $selectedTab) {
+                    switch selectedTab {
+                    case .discover:
+                        //TODO: Show discover view
+                        DiscoverView()
+                    case .collection:
+                        //TODO: Show collection view
+                        DiscoverView()
+                    case .chat:
+                        ChatgptView()
+                    case .profile:
+                        //TODO: Show profile view
+                        DiscoverView()
+                    default:
+                        //TODO: Show discover view
+                        DiscoverView()
+                    }
+                }
+            }
+            VStack{
+                Spacer()
+                HomeView(selectedTab: $selectedTab)
+                    .padding(.bottom, -34) // << this one
+            }
         }
-        .padding()
     }
 }
 

@@ -31,12 +31,10 @@ struct ChatgptView: View {
                             Text(qa.question)
                                 .bold()
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            
                             Text(qa.answer ?? "Sorry, I don't understand your question.")
                                 .padding([.bottom], 10)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        
                     }
                 }.padding()
                 
@@ -81,7 +79,9 @@ struct ChatgptView: View {
 
 struct ChatgptView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        // this needs to be itself
+        // otherwise it shows something else
+        ChatgptView()
     }
 }
 
