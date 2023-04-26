@@ -10,22 +10,24 @@
 		70B8DA0129F715EE00F37B25 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 70B8DA0029F715EE00F37B25 /* OpenAISwift */; };
 		70B8DA0329F71BEC00F37B25 /* ChatgptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */; };
 		70B8DA0529F7615B00F37B25 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8DA0429F7615B00F37B25 /* Config.swift */; };
+		8DB5CE7829F768AD001448D6 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5CE7729F768AD001448D6 /* TabBarView.swift */; };
+		8DB5CE7A29F77B15001448D6 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5CE7929F77B15001448D6 /* TestView.swift */; };
 		C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */; };
 		C4D99E4929F605D700FEFF0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D99E4829F605D700FEFF0B /* ContentView.swift */; };
 		C4D99E4B29F605D800FEFF0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D99E4A29F605D800FEFF0B /* Assets.xcassets */; };
 		C4D99E4E29F605D800FEFF0B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */; };
-		C4E48C6129F6C54B00973764 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E48C6029F6C54B00973764 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatgptView.swift; sourceTree = "<group>"; };
 		70B8DA0429F7615B00F37B25 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		8DB5CE7729F768AD001448D6 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		8DB5CE7929F77B15001448D6 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		C4D99E4329F605D700FEFF0B /* handbook-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "handbook-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handbook_iOSApp.swift; sourceTree = "<group>"; };
 		C4D99E4829F605D700FEFF0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C4D99E4A29F605D800FEFF0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C4E48C6029F6C54B00973764 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,8 @@
 				C4D99E4829F605D700FEFF0B /* ContentView.swift */,
 				C4E48C6029F6C54B00973764 /* HomeView.swift */,
 				70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */,
+				8DB5CE7929F77B15001448D6 /* TestView.swift */,
+				8DB5CE7729F768AD001448D6 /* TabBarView.swift */,
 				C4D99E4A29F605D800FEFF0B /* Assets.xcassets */,
 				C4D99E4C29F605D800FEFF0B /* Preview Content */,
 				70B8DA0429F7615B00F37B25 /* Config.swift */,
@@ -154,10 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4E48C6129F6C54B00973764 /* HomeView.swift in Sources */,
+				8DB5CE7A29F77B15001448D6 /* TestView.swift in Sources */,
 				C4D99E4929F605D700FEFF0B /* ContentView.swift in Sources */,
 				70B8DA0529F7615B00F37B25 /* Config.swift in Sources */,
 				70B8DA0329F71BEC00F37B25 /* ChatgptView.swift in Sources */,
+				8DB5CE7829F768AD001448D6 /* TabBarView.swift in Sources */,
 				C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

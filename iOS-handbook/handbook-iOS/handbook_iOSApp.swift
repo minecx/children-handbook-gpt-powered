@@ -13,6 +13,8 @@ struct handbook_iOSApp: App {
         WindowGroup {
 //            HomeView()
             ChatgptView()
+//            ContentView()
+            // TabBarView()
         }
     }
 }
