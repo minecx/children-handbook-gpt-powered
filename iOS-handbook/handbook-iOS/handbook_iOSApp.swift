@@ -11,7 +11,6 @@ import SwiftUI
 struct handbook_iOSApp: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
             TabBarView()
         }
     }
