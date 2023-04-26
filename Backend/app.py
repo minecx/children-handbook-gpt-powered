@@ -41,3 +41,6 @@ def get_course(user_id):
     if user is None:
         return json.dumps({"error":"User not found!"}), 404
     return json.dumps(user.serialize()), 200
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000, debug=True)
