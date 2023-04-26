@@ -31,12 +31,10 @@ struct ChatgptView: View {
                             Text(qa.question)
                                 .bold()
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            
                             Text(qa.answer ?? "Sorry, I don't understand your question.")
                                 .padding([.bottom], 10)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        
                     }
                 }.padding()
                 

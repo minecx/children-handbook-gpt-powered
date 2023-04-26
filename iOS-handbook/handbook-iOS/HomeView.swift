@@ -7,169 +7,69 @@
 
 import SwiftUI
 
-let ourGray = Color(red: 153/255, green: 153/255, blue: 153/255)
-let geneticPadding: CGFloat = 20
-let bookCategories = [
-    "Bedtime",
-    "Classic Tales",
-    "Animals & Nature",
-    "Emotional Intelligence",
-    "Science & Tech",
-    "ABC & Alphabet",
-    "Diversity & Inclusion",
-    "Travel & Adventure"
-]
-let books = [
-    "sample_book1",
-    "sample_book2",
-    "sample_book3",
-    "sample_book1",
-    "sample_book2",
-    "sample_book3",
-]
-let musics = [
-    "sample_music1",
-    "sample_music2",
-    "sample_music3",
-    "sample_music1",
-    "sample_music2",
-    "sample_music3",
-]
-let username = "Userrrr"
+enum Tab: String, CaseIterable {
+    case discover
+    case collection
+    case chat
+    case profile
+}
 
 struct HomeView: View {
-    @State private var buttonStates = Array(repeating: false, count: bookCategories.count)
-    
+    @Binding var selectedTab: Tab
+    private var fillImage:String {
+        selectedTab.rawValue + ".fill"
+    }
     var body: some View {
-        ScrollView(.vertical) {
-            HStack {
-                Text("Hello, \n\(username)!")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                
-                Spacer()
-                
-                Image("sample_avatar")
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                Text("Books For You")
-                    .font(.title)
-                
-                Spacer()
-                
-                Button(action: {
-                    seeAllBooks()
-                }) {
-                    Text("See All")
-                        .foregroundColor(ourGray)
-                }
-            }
-            .padding(.horizontal)
-            
-            ScrollView(.horizontal) {
-                HStack(spacing: geneticPadding) {
-                    ForEach(0..<buttonStates.count) { index in
-                        Button(action: {
-                            switchCategory(index: index)
-                        }) {
-                            Text(bookCategories[index])
-                                .foregroundColor(buttonStates[index] ? Color.blue : ourGray)
-                        }
-                    }
-                }
-                .padding(.horizontal)
-            }
-            
-            ScrollView(.horizontal) {
-                HStack(spacing: geneticPadding) {
-                    ForEach(0..<books.count) { index in
-                        Button(action: {
-                            print("hit")
-                        }) {
-                            Image(books[index])
-                        }
-                    }
-                }
-            }
-            .padding(.horizontal)
-            
-            Text("Continue Reading")
-                .font(.title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                // padding left
-                .padding(.leading)
-            
-            Text("TODO: should be hidden if none found")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-            
-            // TODO: hide if none found in history
-            ScrollView(.horizontal) {
-                HStack(spacing: geneticPadding) {
-                    ForEach(1..<5) { index in
-                        Button(action: {
-                            print("hit")
-                        }) {
-                            Image(books[index])
-                        }
-                    }
-                }
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                Text("Music Ignites")
-                    .font(.title)
-                
-                Spacer()
-                
-                Button(action: {
-                    seeAllMusic()
-                }) {
-                    Text("See All")
-                        .foregroundColor(ourGray)
-                }
-            }
-            .padding(.horizontal)
-            
-            ScrollView(.horizontal) {
-                HStack(spacing: geneticPadding) {
-                    ForEach(0..<musics.count) { index in
-                        VStack {
-                            Button(action: {
-                                print("hit")
-                            }) {
-                                Image(musics[index])
+        VStack{
+            HStack{
+                ForEach(Tab.allCases, id: \.rawValue) { tab in
+                    Spacer()
+                    Image(selectedTab == tab ? fillImage : tab.rawValue)
+                        .onTapGesture {
+                            withAnimation(.easeIn(duration: 0.1)) {
+                                selectedTab = tab
                             }
-                            
-                            // TODO: change song name
-                            Text("song")
                         }
-                    }
+                        .frame(width: 24, height: 24)
+                    Spacer()
                 }
             }
-            .padding(.horizontal)
+            .frame(width: nil, height: 78)
+            .background(Color("TabBarColor"))
+            .cornerRadius(30, corners: [.topLeft, .topRight])
         }
-    }
-    
-    func seeAllBooks() {
-        print("tapped see all book button")
-    }
-    
-    func seeAllMusic() {
-        print("tapped see all music button")
-    }
-    
-    func switchCategory(index: Int) {
-        print("book category: \(bookCategories[index])")
-        buttonStates[index].toggle()
     }
 }
 
+
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(selectedTab: .constant(.discover))
+    }
+}
+
+struct RoundedCorners: Shape {
+    var radius: CGFloat
+    var corners: UIRectCorner
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
+
+struct CornerRadiusModifier: ViewModifier {
+    var radius: CGFloat
+    var corners: UIRectCorner
+
+    func body(content: Content) -> some View {
+        content
+            .clipShape(RoundedCorners(radius: radius, corners: corners))
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        self.modifier(CornerRadiusModifier(radius: radius, corners: corners))
     }
 }
