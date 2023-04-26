@@ -91,3 +91,6 @@ iOSInjectionProject/
 
 # macOS
 **/.DS_Store
+
+# API Key
+iOS-handbook/handbook-iOS/Config.swift
