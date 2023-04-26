@@ -14,18 +14,16 @@ struct TabBarView: View {
         GeometryReader { geo in
             VStack{
                 Spacer()
-                switch index{
+                switch index {
                 case 0 :
-                    ContentView()
+                    TestView(index: index)
                 //TODO: change to different views once finish implementing
                 case 1 :
-                    ContentView()
+                    TestView(index: index)
                 case 2:
-                    ContentView()
-                case 3:
-                    ContentView()
+                    TestView(index: index)
                 default:
-                    ContentView()
+                    TestView(index: 100)
                 }
                 
                 Spacer()

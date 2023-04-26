@@ -81,7 +81,9 @@ struct ChatgptView: View {
 
 struct ChatgptView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        // this needs to be itself
+        // otherwise it shows something else
+        ChatgptView()
     }
 }
 

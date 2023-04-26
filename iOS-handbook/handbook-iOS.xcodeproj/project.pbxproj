@@ -14,7 +14,6 @@
 		8DB5CE7A29F77B15001448D6 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5CE7929F77B15001448D6 /* TestView.swift */; };
 		C459F6AC29F8C11B00C24536 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C459F6AB29F8C11B00C24536 /* HomeView.swift */; };
 		C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */; };
-		C4D99E4929F605D700FEFF0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D99E4829F605D700FEFF0B /* ContentView.swift */; };
 		C4D99E4B29F605D800FEFF0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D99E4A29F605D800FEFF0B /* Assets.xcassets */; };
 		C4D99E4E29F605D800FEFF0B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -28,7 +27,6 @@
 		C459F6AB29F8C11B00C24536 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C4D99E4329F605D700FEFF0B /* handbook-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "handbook-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handbook_iOSApp.swift; sourceTree = "<group>"; };
-		C4D99E4829F605D700FEFF0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C4D99E4A29F605D800FEFF0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,7 +64,6 @@
 			children = (
 				C459F6AB29F8C11B00C24536 /* HomeView.swift */,
 				C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */,
-				C4D99E4829F605D700FEFF0B /* ContentView.swift */,
 				70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */,
 				8DB5CE7929F77B15001448D6 /* TestView.swift */,
 				8DB5CE7729F768AD001448D6 /* TabBarView.swift */,
@@ -164,7 +161,6 @@
 			files = (
 				8DB5CE7A29F77B15001448D6 /* TestView.swift in Sources */,
 				C459F6AC29F8C11B00C24536 /* HomeView.swift in Sources */,
-				C4D99E4929F605D700FEFF0B /* ContentView.swift in Sources */,
 				70B8DA0529F7615B00F37B25 /* Config.swift in Sources */,
 				70B8DA0329F71BEC00F37B25 /* ChatgptView.swift in Sources */,
 				8DB5CE7829F768AD001448D6 /* TabBarView.swift in Sources */,
