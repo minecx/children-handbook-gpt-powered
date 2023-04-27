@@ -74,7 +74,6 @@ struct CreateProfileView: View {
                         .foregroundColor(showIndication ? .red : nil)
                     
                     TextField("Kiddo's nickname", text: $nickName)
-                        .autocapitalization(.none)
                         .padding()
                         .background(Color.white)
                         .foregroundColor(.black)
@@ -82,6 +81,8 @@ struct CreateProfileView: View {
                         .frame(height: 50)
                         .opacity(0.8)
                         .padding(.bottom, 20)
+                        .ignoresSafeArea(.keyboard)
+
                 }
                 
                 VStack(alignment: .leading) {
