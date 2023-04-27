@@ -105,14 +105,38 @@ def create_album():
     if body.get("music_cover") is None:
         return json.dumps({"error":"Error message: no music_cover"}), 400
     new_music = Music(
-        bookname = body.get("musicname"),
-        author = body.get("artist"),
-        book_url = body.get("music_url"),
-        book_cover = body.get("music_cover")
+        musicname = body.get("musicname"),
+        artist = body.get("artist"),
+        music_url = body.get("music_url"),
+        music_cover = body.get("music_cover")
     )
     db.session.add(new_music)
     db.session.commit()
     return json.dumps(new_music.serialize()), 201
+
+@app.route("api/users/", methods=["POST"])
+def create_user():
+    """
+    create a user
+    """
+    body = json.loads(request.data)
+    if body.get("username") is None:
+        return json.dumps({"error":"Error message: no username"}), 400
+    if body.get("password") is None:
+        return json.dumps({"error":"Error message: no password"}), 400
+    if body.get("email") is None:
+        return json.dumps({"error":"Error message: no email"}), 400
+    if body.get("pfp") is None:
+        return json.dumps({"error":"Error message: no pfp"}), 400
+    new_user = User(
+        username = body.get("username"),
+        password = body.get("password"),
+        email = body.get("email"),
+        pfp = body.get("pfp")
+    )
+    db.session.add(new_user)
+    db.session.commit()
+    return json.dumps(new_user.serialize()), 201
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
