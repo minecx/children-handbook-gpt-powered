@@ -9,6 +9,7 @@
 import SwiftUI
 import OpenAISwift
 
+
 struct ChatgptView: View {
     
     let config = AppConfig()
@@ -18,148 +19,167 @@ struct ChatgptView: View {
     @State private var questionAndAnswers: [QuestionAndAnswer] = []
     @State private var searching: Bool = false
     
-    @State private var searchFixedQuery: String = ""
+    @State private var searchingStories: Bool = false
     
+    @State private var chatMessages: [ChatMessage] = []
     
     init() {
         openAI = OpenAISwift(authToken: config.OPENAI_API_KEY)
     }
     
+    static let emptyScrollToString = "Empty"
+    @State private var convIndex = ""
+        
     var body: some View {
-        GeometryReader { geo in
-            ScrollViewReader { proxy in
-                VStack {
-                    HStack{
-                        Text("Kiddo Helper")
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundColor(Color("FontColor1"))
-                    }
-                    ZStack(alignment: .bottom) {
-                        ScrollView(showsIndicators: false) {
-                            ForEach(questionAndAnswers) { qa in
-                                VStack(spacing: 10) {
-                                    HStack{
-                                        ChatBubble(direction: .right) {
-                                            Text(qa.question)
-                                                .font(.system(size: 15, weight: .medium))
-                                                .padding(.all, 15)
-                                                .foregroundColor(Color.black)
-                                                .background(Color.white).opacity(0.7)
-                                        }
-                                        avatarView()
+        VStack {
+            Spacer()
+            HStack{
+                Spacer()
+                Text("Kiddo Helper")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(Color("FontColor1"))
+                Spacer()
+            }
+            ScrollViewReader { anchor in
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        ForEach(questionAndAnswers, id: \.id) { qa in
+                            VStack(spacing: 10) {
+                                HStack(alignment: .bottom) {
+                                    ChatBubble(direction: .right) {
+                                        Text(qa.question)
+                                            .font(.system(size: 15, weight: .medium))
+                                            .padding(.all, 15)
+                                            .foregroundColor(Color.black)
+                                            .background(Color.white).opacity(0.7)
                                     }
-                                    
-                                    HStack(alignment: .bottom) {
-                                        botAvatarView()
-                                        if searching {
-                                            ProgressView()
-                                                .padding()
-                                        } else {
-                                            ChatBubble(direction: .left) {
-                                                Text(qa.answer ?? "Sorry, I don't understand your question.")
-                                                    .font(.system(size: 15, weight: .medium))
-                                                    .padding(.all, 15)
-                                                    .foregroundColor(Color.black)
-                                                    .background(Color("BubbleColor2")).opacity(0.7)
-                                            }
-                                        }
-                                    }
+                                    avatarView()
                                 }
-                            }
-                        }
-                        VStack{
-                            HStack{
-                                Button {
-                                    //TODO: adjust the search query accordingly
-                                    searchFixedQuery = "Write a short story for my 5 years old child, reformat the answer with Proximate length of the story, Title:, Author:"
-                                    performFixedOpenAISearch()
-                                } label: {
-                                    Text("✏️Write a story")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(Color.black)
-                                }
-                                .frame(width: 110, height: 30)
-                                .background(Color.white).opacity(0.7)
-                                .cornerRadius(15)
                                 
-                                Button {
-                                    //TODO: adjust the search query accordingly
-                                } label: {
-                                    Text("🎨 Draw a picture")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(Color.black)
-                                }
-                                .frame(width: 130, height: 30)
-                                .background(Color.white).opacity(0.7)
-                                .cornerRadius(15)
-                                Spacer()
-                                Spacer()
-                            }
-                            .padding(.leading)
-                            
-                            HStack {
-                                TextField("Type here...", text: $search)
-                                    .onSubmit {
-                                        if !search.isEmpty {
-                                            searching = true
-                                            performOpenAISearch()
-                                        }
+                                HStack(alignment: .bottom) {
+                                    botAvatarView()
+                                    ChatBubble(direction: .left) {
+                                        Text(qa.answer ?? "Sorry, I don't understand your question.")
+                                            .font(.system(size: 15, weight: .medium))
+                                            .padding(.all, 15)
+                                            .foregroundColor(Color.black)
+                                            .background(Color("BubbleColor2")).opacity(0.7)
                                     }
-                                    .font(.system(size: 15, weight: .medium))
-                                    .padding()
-                                    .padding(.leading)
-                                    .background(RoundedRectangle(cornerRadius: 34).fill(Color.white).opacity(0.7))
-                                if searching {
-                                    ProgressView()
-                                        .padding()
                                 }
                             }
-                            .background(.clear)
+                            .onChange(of: convIndex) { _ in
+                                anchor.scrollTo(ChatgptView.emptyScrollToString, anchor: .bottom)
+                            }
                         }
+                        HStack{
+                            Spacer()
+                        }
+                        .id(ChatgptView.emptyScrollToString)
+                    }
+                    
+                    if searchingStories || searching {
+                        ProgressView()
+                            .padding()
                     }
                 }
-                .padding()
-                .background(MovingBubblesView())
             }
+            
+            HStack{
+                Button {
+                    searchingStories = true
+                    performWriteStoryOpenAISearch()
+                } label: {
+                    Text("✏️Write a story")
+                        .font(.system(size: 13))
+                        .foregroundColor(Color.black)
+                }
+                .frame(width: 110, height: 30)
+                .background(Color.white).opacity(0.7)
+                .cornerRadius(15)
+                
+                Button {
+                    //TODO: adjust the search query accordingly
+                } label: {
+                    Text("🎨 Draw a picture")
+                        .font(.system(size: 13))
+                        .foregroundColor(Color.black)
+                }
+                .frame(width: 130, height: 30)
+                .background(Color.white).opacity(0.7)
+                .cornerRadius(15)
+                Spacer()
+            }
+            
+            TextField("Type here...", text: $search)
+                .onSubmit {
+                    if !search.isEmpty {
+                        searching = true
+                        performOpenAISearch()
+                    }
+                }
+                .font(.system(size: 15, weight: .medium))
+                .padding()
+                .padding(.leading)
+                .background(RoundedRectangle(cornerRadius: 34).fill(Color.white).opacity(0.7))
+                .frame(height: 44)
+                .background(.clear)
         }
+        .padding(.horizontal)
+        .background(MovingBubblesView())
     }
     
+    //TODO: In future, we can add Moderation layer
     private func performOpenAISearch() {
-        openAI.sendCompletion(
-            with: search.trimmingCharacters(in: .whitespacesAndNewlines),
-            model: .gpt3(.davinci),
-            maxTokens: 200,
-            temperature: 0.5
+        let firstUserMessage: ChatMessage = ChatMessage(role: .user, content: search)
+        chatMessages.append(firstUserMessage)
+        openAI.sendChat(
+            with: chatMessages,
+            model: .chat(.chatgpt),
+            //TODO: unique identifier, should be determined by log in information
+            user: "123",
+            temperature: 0.5,
+            topProbabilityMass: 0.2,
+            choices: 1,
+            //TODO: can change this number later
+            maxTokens: 300,
+            presencePenalty: 0.5,
+            frequencyPenalty: 0.8
+            //TODO: can set the logitBias parameter later to set up the response references
         ) { result in
             switch result {
             case .success(let success):
-                let questionAndAnswer = QuestionAndAnswer(question: search.trimmingCharacters(in: .whitespacesAndNewlines), answer: success.choices?.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Sorry, I don't understand your question.")
-                questionAndAnswers.append(questionAndAnswer)
+                //for display purposes
+                let qAnda = QuestionAndAnswer(question: search, answer: success.choices?.first?.message.content ?? "Sorry, I don't understand your question.")
+                questionAndAnswers.append(qAnda)
+                
+                let botChatMessage = ChatMessage(role: .assistant, content: success.choices?.first?.message.content ?? "Sorry, I don't understand your question.")
+                chatMessages.append(botChatMessage)
                 search = ""
                 searching = false
+                convIndex.append("a")
             case .failure(let failure):
                 print(failure.localizedDescription)
+                print("hello")
                 searching = false
             }
         }
     }
     
-    private func performFixedOpenAISearch() {
+    private func performWriteStoryOpenAISearch() {
         openAI.sendCompletion(
-            with: searchFixedQuery.trimmingCharacters(in: .whitespacesAndNewlines),
+            with: "Write a short story for my 5 years old child, reformat the answer with Proximate length of the story, Title:, Author:, the maximum length of the response is 300",
             model: .gpt3(.davinci),
-            maxTokens: 200,
+            maxTokens: 300,
             temperature: 0.5
         ) { result in
             switch result {
             case .success(let success):
-                let questionAndAnswer = QuestionAndAnswer(question: "✏️Write a story", answer: success.choices?.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Sorry, I don't understand your question.")
+                let questionAndAnswer = QuestionAndAnswer(question: "✏️Write a story", answer: success.choices?.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Sorry, there is a problem with generating stories")
                 questionAndAnswers.append(questionAndAnswer)
-                searchFixedQuery = ""
-                searching = false
+                searchingStories = false
             case .failure(let failure):
                 print(failure.localizedDescription)
-                searching = false
+                searchingStories = false
             }
         }
     }
@@ -173,13 +193,27 @@ struct ChatgptView_Previews: PreviewProvider {
     }
 }
 
-struct QuestionAndAnswer: Identifiable {
+struct QuestionAndAnswer: Hashable {
     let id = UUID()
     
     let question: String
     var answer: String?
 }
 
+func convertChatToQuestionAndAnswer(chat: [ChatMessage]) -> [QuestionAndAnswer] {
+    var questionAndAnswer: [QuestionAndAnswer] = []
+    
+    for i in 0..<chat.count {
+        if chat[i].role == .user {
+            // If this message is from the user, create a new QuestionAndAnswer object with the question
+            questionAndAnswer.append(QuestionAndAnswer(question: chat[i].content, answer: nil))
+        } else if chat[i].role == .assistant {
+            // If this message is from the assistant, find the last QuestionAndAnswer object in the list and add the answer to it
+            questionAndAnswer[questionAndAnswer.count - 1].answer = chat[i].content
+        }
+    }
+    return questionAndAnswer
+}
 
 struct ChatBubbleShape: Shape {
     enum Direction {
@@ -277,8 +311,9 @@ struct ChatBubble<Content>: View where Content: View {
             if direction == .left {
                 Spacer()
             }
-        }.padding([(direction == .left) ? .leading : .trailing, .top, .bottom], 10)
-            .padding((direction == .right) ? .leading : .trailing, 10)
+        }
+        .padding([(direction == .left) ? .leading : .trailing, .top, .bottom], 10)
+        .padding((direction == .right) ? .leading : .trailing, 10)
     }
 }
 
