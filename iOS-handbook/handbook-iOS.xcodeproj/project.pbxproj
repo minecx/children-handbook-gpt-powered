@@ -10,6 +10,15 @@
 		70B8DA0129F715EE00F37B25 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 70B8DA0029F715EE00F37B25 /* OpenAISwift */; };
 		70B8DA0329F71BEC00F37B25 /* ChatgptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */; };
 		8D848CB229FA5A3A00D3B878 /* ExistingProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CB129FA5A3A00D3B878 /* ExistingProfileView.swift */; };
+		8D848CB629FBB7D600D3B878 /* UploadStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CB529FBB7D600D3B878 /* UploadStoryView.swift */; };
+		8D848CB829FC1E1000D3B878 /* ChildrenBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CB729FC1E1000D3B878 /* ChildrenBook.swift */; };
+		8D848CBC29FC216300D3B878 /* ChildrenBookFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CBB29FC216300D3B878 /* ChildrenBookFetcher.swift */; };
+		8D848CBE29FC230500D3B878 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CBD29FC230500D3B878 /* LoadingView.swift */; };
+		8D848CC029FC231000D3B878 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CBF29FC231000D3B878 /* ErrorView.swift */; };
+		8D848CC229FC23F000D3B878 /* TestNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CC129FC23F000D3B878 /* TestNetworkView.swift */; };
+		8D848CC429FC256D00D3B878 /* ChildrenBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CC329FC256D00D3B878 /* ChildrenBookListView.swift */; };
+		8D848CC629FC285000D3B878 /* APIerror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CC529FC285000D3B878 /* APIerror.swift */; };
+		8D848CC829FC2B2700D3B878 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D848CC729FC2B2700D3B878 /* APIservice.swift */; };
 		8DA88D0B29F8EB5E0018F601 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA88D0A29F8EB5E0018F601 /* DiscoverView.swift */; };
 		8DA88D0D29F8EF4A0018F601 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA88D0C29F8EF4A0018F601 /* ContentView.swift */; };
 		8DA88D0F29F8F5D20018F601 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA88D0E29F8F5D20018F601 /* OnboardingView.swift */; };
@@ -28,6 +37,15 @@
 /* Begin PBXFileReference section */
 		70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatgptView.swift; sourceTree = "<group>"; };
 		8D848CB129FA5A3A00D3B878 /* ExistingProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingProfileView.swift; sourceTree = "<group>"; };
+		8D848CB529FBB7D600D3B878 /* UploadStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryView.swift; sourceTree = "<group>"; };
+		8D848CB729FC1E1000D3B878 /* ChildrenBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenBook.swift; sourceTree = "<group>"; };
+		8D848CBB29FC216300D3B878 /* ChildrenBookFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenBookFetcher.swift; sourceTree = "<group>"; };
+		8D848CBD29FC230500D3B878 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		8D848CBF29FC231000D3B878 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		8D848CC129FC23F000D3B878 /* TestNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNetworkView.swift; sourceTree = "<group>"; };
+		8D848CC329FC256D00D3B878 /* ChildrenBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenBookListView.swift; sourceTree = "<group>"; };
+		8D848CC529FC285000D3B878 /* APIerror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIerror.swift; sourceTree = "<group>"; };
+		8D848CC729FC2B2700D3B878 /* APIservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIservice.swift; sourceTree = "<group>"; };
 		8DA88D0A29F8EB5E0018F601 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		8DA88D0C29F8EF4A0018F601 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8DA88D0E29F8F5D20018F601 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -57,6 +75,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D848CB929FC211F00D3B878 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D848CB729FC1E1000D3B878 /* ChildrenBook.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8D848CBA29FC213F00D3B878 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				8D848CBB29FC216300D3B878 /* ChildrenBookFetcher.swift */,
+				8D848CC529FC285000D3B878 /* APIerror.swift */,
+				8D848CC729FC2B2700D3B878 /* APIservice.swift */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
 		C4D99E3A29F605D700FEFF0B = {
 			isa = PBXGroup;
 			children = (
@@ -86,11 +122,18 @@
 				70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */,
 				8DA88D1629F9AA820018F601 /* CreateProfileView.swift */,
 				8D848CB129FA5A3A00D3B878 /* ExistingProfileView.swift */,
+				8D848CB529FBB7D600D3B878 /* UploadStoryView.swift */,
 				C4D99E4A29F605D800FEFF0B /* Assets.xcassets */,
 				C4D99E4C29F605D800FEFF0B /* Preview Content */,
 				8DF97B9129F8EB08005AE953 /* Config.swift */,
 				8DA88D1429F8F6390018F601 /* MovingBubblesView.swift */,
 				8DA88D1829F9AAB20018F601 /* ImagePicker.swift */,
+				8D848CBA29FC213F00D3B878 /* NetWork */,
+				8D848CB929FC211F00D3B878 /* Model */,
+				8D848CBD29FC230500D3B878 /* LoadingView.swift */,
+				8D848CBF29FC231000D3B878 /* ErrorView.swift */,
+				8D848CC129FC23F000D3B878 /* TestNetworkView.swift */,
+				8D848CC329FC256D00D3B878 /* ChildrenBookListView.swift */,
 			);
 			path = "handbook-iOS";
 			sourceTree = "<group>";
@@ -184,13 +227,22 @@
 				70B8DA0329F71BEC00F37B25 /* ChatgptView.swift in Sources */,
 				8DA88D1729F9AA820018F601 /* CreateProfileView.swift in Sources */,
 				8DA88D0D29F8EF4A0018F601 /* ContentView.swift in Sources */,
+				8D848CC429FC256D00D3B878 /* ChildrenBookListView.swift in Sources */,
+				8D848CC229FC23F000D3B878 /* TestNetworkView.swift in Sources */,
+				8D848CBE29FC230500D3B878 /* LoadingView.swift in Sources */,
 				8DA88D1329F8F6190018F601 /* LoginView.swift in Sources */,
 				C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */,
+				8D848CC029FC231000D3B878 /* ErrorView.swift in Sources */,
+				8D848CC629FC285000D3B878 /* APIerror.swift in Sources */,
 				8DA88D1129F8F6000018F601 /* SignupView.swift in Sources */,
 				8DF97B9229F8EB08005AE953 /* Config.swift in Sources */,
 				8DA88D0B29F8EB5E0018F601 /* DiscoverView.swift in Sources */,
+				8D848CC829FC2B2700D3B878 /* APIservice.swift in Sources */,
+				8D848CBC29FC216300D3B878 /* ChildrenBookFetcher.swift in Sources */,
 				8DA88D1929F9AAB20018F601 /* ImagePicker.swift in Sources */,
 				8D848CB229FA5A3A00D3B878 /* ExistingProfileView.swift in Sources */,
+				8D848CB829FC1E1000D3B878 /* ChildrenBook.swift in Sources */,
+				8D848CB629FBB7D600D3B878 /* UploadStoryView.swift in Sources */,
 				8DA88D1529F8F6390018F601 /* MovingBubblesView.swift in Sources */,
 				8DA88D0F29F8F5D20018F601 /* OnboardingView.swift in Sources */,
 			);
