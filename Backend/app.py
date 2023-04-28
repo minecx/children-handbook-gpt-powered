@@ -1,10 +1,10 @@
-from db import db, Book, Music, Usser
+from db import db, Book, Music, User
 from flask import Flask, request
 import json
 import os
 
 app = Flask(__name__)
-db_filename = "cms.db"
+db_filename = "MyApp.db"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///%s" % db_filename
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -60,7 +60,7 @@ def get_user(user_id):
         return json.dumps({"error":"User not found!"}), 404
     return json.dumps(user.serialize()), 200
 
-@app.route("api/books/", methods=["POST"])
+@app.route("/api/books/", methods=["POST"])
 def create_book():
     """
     create a book
@@ -90,7 +90,7 @@ def create_book():
     db.session.commit()
     return json.dumps(new_book.serialize()), 201
 
-@app.route("api/albums/", methods=["POST"])
+@app.route("/api/albums/", methods=["POST"])
 def create_album():
     """
     create an album
@@ -114,7 +114,7 @@ def create_album():
     db.session.commit()
     return json.dumps(new_music.serialize()), 201
 
-@app.route("api/users/", methods=["POST"])
+@app.route("/api/users/", methods=["POST"])
 def create_user():
     """
     create a user
@@ -137,6 +137,30 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
     return json.dumps(new_user.serialize()), 201
+
+@app.route("/api/books/<int:book_id>/",methods = ["DELETE"])
+def delete_book(book_id):
+    """
+    Delete a book by id
+    """
+    book = Book.query.filter_by(id=book_id).first()
+    if book is None:
+        return json.dumps({"error":"Error message: book not found"}), 404
+    db.session.delete(book)
+    db.session.commit()
+    return json.dumps(book.serialize()), 200
+
+@app.route("/api/save/<int:user_id>/<int:book_id>/", methods = ["POST"])
+def save_book(book_id, user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user is None:
+        return json.dumps({"error":"Error message: User not found"}),404
+    book = Book.query.filter_by(id=book_id).first()
+    if book is None:
+        return json.dumps({"error":"Error message: book not found"}), 404
+    user.books_saved.append(book)
+    db.session.commit()
+    return json.dumps(user.serialize()),201
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
