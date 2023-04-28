@@ -4,11 +4,9 @@
 //
 //  Created by Ann Zhou on 4/24/23.
 //
-// Ref: https://www.youtube.com/watch?v=XF8IbrNh7E0&list=PLK0S7kvEbHhm3qbf9eA_fUTCdmGHcHqWl&index=1&ab_channel=azamsharp
 
 import SwiftUI
 import OpenAISwift
-
 
 struct ChatgptView: View {
     
@@ -18,11 +16,13 @@ struct ChatgptView: View {
     @State private var search: String = ""
     @State private var questionAndAnswers: [QuestionAndAnswer] = []
     @State private var searching: Bool = false
-    
-    @State private var searchingStories: Bool = false
-    
+        
     @State private var chatMessages: [ChatMessage] = []
     
+    @State private var searchStory: String = "Please write my 5 year old son a story, the response should not exceed the 300 tokens. "
+        
+    @State private var generatedImagesURLs: String = ""
+        
     init() {
         openAI = OpenAISwift(authToken: config.OPENAI_API_KEY)
     }
@@ -77,7 +77,7 @@ struct ChatgptView: View {
                         .id(ChatgptView.emptyScrollToString)
                     }
                     
-                    if searchingStories || searching {
+                    if searching {
                         ProgressView()
                             .padding()
                     }
@@ -86,8 +86,10 @@ struct ChatgptView: View {
             
             HStack{
                 Button {
-                    searchingStories = true
-                    performWriteStoryOpenAISearch()
+                    if !searchStory.isEmpty {
+                        searching = true
+                        performWriteStoryOpenAISearch()
+                    }
                 } label: {
                     Text("✏️Write a story")
                         .font(.system(size: 13))
@@ -98,7 +100,9 @@ struct ChatgptView: View {
                 .cornerRadius(15)
                 
                 Button {
-                    //TODO: adjust the search query accordingly
+                    //TODO: need to fix performOpenAIImageSearch()
+//                    searching = true
+//                    performOpenAIImageSearch()
                 } label: {
                     Text("🎨 Draw a picture")
                         .font(.system(size: 13))
@@ -109,6 +113,7 @@ struct ChatgptView: View {
                 .cornerRadius(15)
                 Spacer()
             }
+            .padding(5)
             
             TextField("Type here...", text: $search)
                 .onSubmit {
@@ -118,17 +123,18 @@ struct ChatgptView: View {
                     }
                 }
                 .font(.system(size: 15, weight: .medium))
-                .padding()
+                .padding(15)
                 .padding(.leading)
                 .background(RoundedRectangle(cornerRadius: 34).fill(Color.white).opacity(0.7))
                 .frame(height: 44)
                 .background(.clear)
         }
         .padding(.horizontal)
+        .padding(.bottom, 10)
         .background(MovingBubblesView())
     }
     
-    //TODO: In future, we can add Moderation layer
+    //TODO: In future, we can add the Moderation layer
     private func performOpenAISearch() {
         let firstUserMessage: ChatMessage = ChatMessage(role: .user, content: search)
         chatMessages.append(firstUserMessage)
@@ -166,20 +172,56 @@ struct ChatgptView: View {
     }
     
     private func performWriteStoryOpenAISearch() {
-        openAI.sendCompletion(
-            with: "Write a short story for my 5 years old child, reformat the answer with Proximate length of the story, Title:, Author:, the maximum length of the response is 300",
-            model: .gpt3(.davinci),
+        //TODO: Customization here
+        let firstUserMessage: ChatMessage = ChatMessage(role: .user, content: searchStory)
+        chatMessages.append(firstUserMessage)
+        openAI.sendChat(
+            with: chatMessages,
+            model: .chat(.chatgpt),
+            //TODO: unique identifier, should be determined by log in information
+            user: "123",
+            temperature: 0.5,
+            topProbabilityMass: 0.2,
+            choices: 1,
+            //TODO: can change this number later
             maxTokens: 300,
-            temperature: 0.5
+            presencePenalty: 0.5,
+            frequencyPenalty: 0.8
+            //TODO: can set the logitBias parameter later to set up the response references
         ) { result in
             switch result {
             case .success(let success):
-                let questionAndAnswer = QuestionAndAnswer(question: "✏️Write a story", answer: success.choices?.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Sorry, there is a problem with generating stories")
-                questionAndAnswers.append(questionAndAnswer)
-                searchingStories = false
+                //for display purposes
+                let qAnda = QuestionAndAnswer(question: "Write a story", answer: success.choices?.first?.message.content ?? "Sorry, I don't understand your question.")
+                questionAndAnswers.append(qAnda)
+                
+                let botChatMessage = ChatMessage(role: .assistant, content: success.choices?.first?.message.content ?? "Sorry, I don't understand your question.")
+                chatMessages.append(botChatMessage)
+                searchStory = ""
+                searching = false
+                convIndex.append("a")
             case .failure(let failure):
                 print(failure.localizedDescription)
-                searchingStories = false
+                print("hello")
+                searching = false
+            }
+        }
+    }
+    
+    private func performOpenAIImageSearch() {
+        let firstUserMessage: ChatMessage = ChatMessage(role: .user, content: "Generate a picture")
+        chatMessages.append(firstUserMessage)
+        openAI.sendImages(with: "A 3d render of a rocket ship", numImages: 1, size: .size256) { result in // Result<OpenAI, OpenAIError>
+            switch result {
+            case .success(let success):
+                DispatchQueue.main.async {
+                    generatedImagesURLs = success.data?.first?.url  ?? ""
+                    let botChatMessage = ChatMessage(role: .assistant, content: generatedImagesURLs)
+                    chatMessages.append(botChatMessage)
+                    let tt = chatMessages
+                }
+            case .failure(let failure):
+                print(failure.localizedDescription)
             }
         }
     }
