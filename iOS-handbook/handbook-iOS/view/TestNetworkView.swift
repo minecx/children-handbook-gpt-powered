@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct TestNetworkView: View {
-    @StateObject var childrenbookFetcher = ChildrenBookFetcher()
+    @StateObject var breedFetcher = BreedFetcher()
 
     var body: some View {
-        if childrenbookFetcher.isLoading {
+        if breedFetcher.isLoading {
             LoadingView()
-        } else if childrenbookFetcher.errorMessage != nil {
-            ErrorView(childrenbookFetcher: childrenbookFetcher)
+        } else if breedFetcher.errorMessage != nil {
+            ErrorView(breedFetcher: breedFetcher)
         } else {
-            ChildrenBookListView(books: childrenbookFetcher.books)
+            BreedListView(breeds: breedFetcher.breeds)
         }
     }
 }

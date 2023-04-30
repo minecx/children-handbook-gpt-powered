@@ -9,7 +9,13 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text("🐶")
+                .font(.system(size: 80))
+            ProgressView()
+            Text("Getting the breeds...")
+                .foregroundColor(.gray)
+        }
     }
 }
 

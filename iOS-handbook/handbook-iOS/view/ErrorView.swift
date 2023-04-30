@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct ErrorView: View {
-    @ObservedObject var childrenbookFetcher: ChildrenBookFetcher
+    @ObservedObject var breedFetcher: BreedFetcher
     
     var body: some View {
-        Text(childrenbookFetcher.errorMessage ?? "Unknown Error")
+        VStack{
+            Text("😢")
+                .font(.system(size: 80))
+            Text(breedFetcher.errorMessage ?? "")
+        }
     }
 }
 
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(childrenbookFetcher: ChildrenBookFetcher())
+        ErrorView(breedFetcher: BreedFetcher())
     }
 }
