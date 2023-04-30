@@ -102,8 +102,8 @@ class User(db.Model):
     password = db.Column(db.String, nullable = False)
     email = db.Column(db.String, nullable = False)
     pfp = db.Column(db.String, nullable = False)
-    social_media: db.Column(db.String, nullable = False)
-    dob: db.Column(db.Integer, nullable = False)
+    social_media= db.Column(db.String, nullable = False)
+    dob= db.Column(db.Integer, nullable = False) #Datetime
     books_saved = db.relationship("Book",secondary = saved_books, back_populates = "saved_by_users")
     continue_books = db.relationship("Book",secondary = continue_reading, back_populates = "continue_by_users")
     messages = db.relationship("Message", cascade = "delete")
@@ -141,7 +141,7 @@ class Message(db.Model):
     """
     __tablename__ = "message"
     id = db.Column(db.Integer, primary_key = True, autoincrement= True)
-    timestamp = db.Column(db.Timestamp, nullabe = False)
+    timestamp = db.Column(db.DateTime, nullabe = False) #datetime
     question = db.Column(db.String, nullable = False)
     answer = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
