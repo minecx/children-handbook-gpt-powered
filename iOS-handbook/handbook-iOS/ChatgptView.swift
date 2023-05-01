@@ -7,6 +7,7 @@
 
 import SwiftUI
 import OpenAISwift
+import Foundation
 
 struct ChatgptView: View {
     
@@ -19,10 +20,8 @@ struct ChatgptView: View {
         
     @State private var chatMessages: [ChatMessage] = []
     
-    @State private var searchStory: String = "Please write my 5 year old son a story, the response should not exceed the 300 tokens. "
-        
-    @State private var generatedImagesURLs: String = ""
-        
+    @State private var lastAnswerIsURL: Bool = false
+                
     init() {
         openAI = OpenAISwift(authToken: config.OPENAI_API_KEY)
     }
@@ -59,11 +58,26 @@ struct ChatgptView: View {
                                 HStack(alignment: .bottom) {
                                     botAvatarView()
                                     ChatBubble(direction: .left) {
-                                        Text(qa.answer ?? "Sorry, I don't understand your question.")
-                                            .font(.system(size: 15, weight: .medium))
-                                            .padding(.all, 15)
-                                            .foregroundColor(Color.black)
-                                            .background(Color("BubbleColor2")).opacity(0.7)
+                                        Group {
+                                            if let url = URL(string: qa.answer!) {
+                                                Button {
+                                                    UIApplication.shared.open(url)
+                                                } label: {
+                                                    AsyncImage(url: URL(string: qa.answer!)!) {
+                                                        Image(systemName: "photo.artframe")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: UIScreen.main.bounds.size.width * 0.5)
+                                                    }
+                                                }
+                                            } else {
+                                                Text(qa.answer ?? "Sorry, I don't understand your question.")
+                                                    .font(.system(size: 15, weight: .medium))
+                                                    .padding(.all, 15)
+                                                    .foregroundColor(Color.black)
+                                                    .background(Color("BubbleColor2")).opacity(0.7)
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -86,10 +100,8 @@ struct ChatgptView: View {
             
             HStack{
                 Button {
-                    if !searchStory.isEmpty {
-                        searching = true
-                        performWriteStoryOpenAISearch()
-                    }
+                    searching = true
+                    performWriteStoryOpenAISearch()
                 } label: {
                     Text("✏️Write a story")
                         .font(.system(size: 13))
@@ -101,8 +113,8 @@ struct ChatgptView: View {
                 
                 Button {
                     //TODO: need to fix performOpenAIImageSearch()
-//                    searching = true
-//                    performOpenAIImageSearch()
+                    searching = true
+                    performOpenAIImageSearch()
                 } label: {
                     Text("🎨 Draw a picture")
                         .font(.system(size: 13))
@@ -163,6 +175,7 @@ struct ChatgptView: View {
                 search = ""
                 searching = false
                 convIndex.append("a")
+                lastAnswerIsURL = false
             case .failure(let failure):
                 print(failure.localizedDescription)
                 print("hello")
@@ -173,7 +186,7 @@ struct ChatgptView: View {
     
     private func performWriteStoryOpenAISearch() {
         //TODO: Customization here
-        let firstUserMessage: ChatMessage = ChatMessage(role: .user, content: searchStory)
+        let firstUserMessage: ChatMessage = ChatMessage(role: .user, content: "Please write my 5 year old son a story, the response should not exceed the 300 tokens. ")
         chatMessages.append(firstUserMessage)
         openAI.sendChat(
             with: chatMessages,
@@ -197,9 +210,9 @@ struct ChatgptView: View {
                 
                 let botChatMessage = ChatMessage(role: .assistant, content: success.choices?.first?.message.content ?? "Sorry, I don't understand your question.")
                 chatMessages.append(botChatMessage)
-                searchStory = ""
                 searching = false
                 convIndex.append("a")
+                lastAnswerIsURL = false
             case .failure(let failure):
                 print(failure.localizedDescription)
                 print("hello")
@@ -211,14 +224,18 @@ struct ChatgptView: View {
     private func performOpenAIImageSearch() {
         let firstUserMessage: ChatMessage = ChatMessage(role: .user, content: "Generate a picture")
         chatMessages.append(firstUserMessage)
-        openAI.sendImages(with: "A 3d render of a rocket ship", numImages: 1, size: .size256) { result in // Result<OpenAI, OpenAIError>
+        //TODO: Customize the input prompt to generate images; current output image number is 1; size is 256x256
+        openAI.sendImages(with: "an image that can be used for children's illustration book, types and styles of illustration should be suited for children under 8, Don’t be too conceptual or abstract, drawing styles include the following: Cartoon–cute or childlike, Cartoon–whacky or funny, Realistic, Whimsical, Line drawings, Stylized, Sketchy drawings, The following media are used for this children’s books illustration: Watercolor, Acrylic, Collage. Please have aesthetic.", numImages: 1, size: .size256) { result in // Result<OpenAI, OpenAIError>
             switch result {
             case .success(let success):
                 DispatchQueue.main.async {
-                    generatedImagesURLs = success.data?.first?.url  ?? ""
-                    let botChatMessage = ChatMessage(role: .assistant, content: generatedImagesURLs)
+                    let qAnda = QuestionAndAnswer(question: "Generate a picture", answer: success.data?.first?.url  ?? "")
+                    questionAndAnswers.append(qAnda)
+                    let botChatMessage = ChatMessage(role: .assistant, content: success.data?.first?.url  ?? "")
                     chatMessages.append(botChatMessage)
-                    let tt = chatMessages
+                    searching = false
+                    convIndex.append("a")
+                    lastAnswerIsURL = true
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -381,5 +398,85 @@ struct botAvatarView: View {
             Text("🤖️")
                 .font(.system(size: 25))
         }
+    }
+}
+
+
+func isValidURL(_ urlString: String) -> Bool {
+    let urlRegEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+    let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
+    let result = urlTest.evaluate(with: urlString)
+    return result
+}
+
+extension Image {
+    func data(url:URL) -> Self {
+        if let data = try? Data(contentsOf: url) {
+            return Image(uiImage: UIImage(data: data)!)
+                .resizable()
+        }
+        return self.resizable()
+    }
+}
+
+import Combine
+
+struct AsyncImage<Placeholder: View>: View {
+    @StateObject private var loader: ImageLoader
+    private let placeholder: Placeholder
+    private let image: (UIImage) -> Image
+
+    init(
+        url: URL,
+        @ViewBuilder placeholder: () -> Placeholder,
+        @ViewBuilder image: @escaping (UIImage) -> Image = Image.init(uiImage:)
+    ) {
+        self.placeholder = placeholder()
+        self.image = image
+        _loader = StateObject(wrappedValue: ImageLoader(url: url))
+    }
+
+    var body: some View {
+        content
+            .onAppear(perform: loader.load)
+    }
+
+    private var content: some View {
+        Group {
+            if loader.image != nil {
+                image(loader.image!)
+            } else {
+                placeholder
+            }
+        }
+    }
+}
+
+class ImageLoader: ObservableObject {
+    @Published var image: UIImage?
+    private(set) var isLoading = false
+    private let url: URL
+    private var cancellable: AnyCancellable?
+
+    init(url: URL) {
+        self.url = url
+    }
+
+    func load() {
+        guard !isLoading else { return }
+
+        isLoading = true
+        cancellable = URLSession.shared.dataTaskPublisher(for: url)
+            .map { UIImage(data: $0.data) }
+            .replaceError(with: nil)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.isLoading = false
+                self?.image = $0
+            }
+    }
+
+    func cancel() {
+        cancellable?.cancel()
     }
 }
