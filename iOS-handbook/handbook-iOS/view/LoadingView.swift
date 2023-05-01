@@ -10,9 +10,11 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         VStack{
-            Text("🎉")
+            Text("⌛️")
                 .font(.system(size: 80))
             ProgressView()
+                .padding(.bottom)
+                .padding(.bottom)
             Text("Getting the breeds...")
                 .foregroundColor(.gray)
         }
