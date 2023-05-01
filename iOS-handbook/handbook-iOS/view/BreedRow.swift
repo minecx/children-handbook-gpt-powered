@@ -21,8 +21,11 @@ struct BreedRow: View {
                             .frame(width: imageSize, height: imageSize)
                             .clipped()
                     } else if phase.error != nil {
-                        Color.red
+                        Text(phase.error?.localizedDescription ?? "error")
+                            .foregroundColor(Color.pink)
                             .frame(width: imageSize, height: imageSize)
+//                        Color.red
+//                            .frame(width: imageSize, height: imageSize)
                     } else {
                         ProgressView()
                             .frame(width: imageSize, height: imageSize)

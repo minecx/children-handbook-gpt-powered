@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         VStack{
-            Text("🐶")
+            Text("🎉")
                 .font(.system(size: 80))
             ProgressView()
             Text("Getting the breeds...")

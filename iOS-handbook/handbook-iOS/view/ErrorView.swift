@@ -14,7 +14,15 @@ struct ErrorView: View {
         VStack{
             Text("😢")
                 .font(.system(size: 80))
+            
             Text(breedFetcher.errorMessage ?? "")
+            
+            Button {
+                breedFetcher.fetchAllBreeds()
+            } label: {
+                Text("Try Again")
+            }
+
         }
     }
 }
