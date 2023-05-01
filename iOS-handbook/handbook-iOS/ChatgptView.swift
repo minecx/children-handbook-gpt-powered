@@ -54,10 +54,12 @@ struct ChatgptView: View {
                 Spacer()
             }.navigationTitle("ChatGPT")
         }
+        .padding(.top)
+        .padding(.bottom, 50)
     }
     
     private func performOpenAISearch() {
-        var searchText: String = search;
+        let searchText: String = search;
         search = "";
         openAI.sendCompletion(
             with: searchText,

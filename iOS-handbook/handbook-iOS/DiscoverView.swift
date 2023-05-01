@@ -8,7 +8,7 @@
 import SwiftUI
 
 let ourGray = Color(red: 153/255, green: 153/255, blue: 153/255)
-let geneticPadding: CGFloat = 20
+let genericPadding: CGFloat = 20
 let bookCategories = [
     "Bedtime",
     "Classic Tales",
@@ -69,7 +69,7 @@ struct DiscoverView: View {
             .padding(.horizontal)
             
             ScrollView(.horizontal) {
-                HStack(spacing: geneticPadding) {
+                HStack(spacing: genericPadding) {
                     ForEach(0..<buttonStates.count) { index in
                         Button(action: {
                             switchCategory(index: index)
@@ -83,7 +83,7 @@ struct DiscoverView: View {
             }
             
             ScrollView(.horizontal) {
-                HStack(spacing: geneticPadding) {
+                HStack(spacing: genericPadding) {
                     ForEach(0..<books.count) { index in
                         Button(action: {
                             print("hit")
@@ -107,7 +107,7 @@ struct DiscoverView: View {
             
             // TODO: hide if none found in history
             ScrollView(.horizontal) {
-                HStack(spacing: geneticPadding) {
+                HStack(spacing: genericPadding) {
                     ForEach(1..<5) { index in
                         Button(action: {
                             print("hit")
@@ -135,7 +135,7 @@ struct DiscoverView: View {
             .padding(.horizontal)
             
             ScrollView(.horizontal) {
-                HStack(spacing: geneticPadding) {
+                HStack(spacing: genericPadding) {
                     ForEach(0..<musics.count) { index in
                         VStack {
                             Button(action: {
@@ -152,6 +152,8 @@ struct DiscoverView: View {
             }
             .padding(.horizontal)
         }
+        .padding(.top)
+        .padding(.bottom, 50)
     }
     
     func seeAllBooks() {
