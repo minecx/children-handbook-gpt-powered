@@ -17,20 +17,21 @@ struct ChatgptView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView(showsIndicators: false) {
-                    ForEach(questionAndAnswers) { qa in
-                        VStack(spacing: 10) {
-                            Text(qa.question)
-                                .bold()
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Text(qa.answer ?? "...")
-                                .padding([.bottom], 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                Spacer()
+                ScrollView(showsIndicators: true) {
+                   LazyVStack(spacing: 10) {
+                        ForEach(questionAndAnswers) { qa in
+                            if let answer = qa.answer {
+                                QuestionBubble(text: qa.question)
+                                AnswerBubble(text: answer)
+                            } else {
+                                QuestionBubble(text: qa.question)
+                            }
                         }
-                        
                     }
-                }.padding()
+                    .padding()
+                    .frame(maxHeight: 600)
+                }
                 
                 HStack {
                     TextField("Type here...", text: $search)
@@ -48,6 +49,8 @@ struct ChatgptView: View {
                             .padding()
                     }
                 }
+                
+                Spacer()
             }.navigationTitle("ChatGPT")
         }
     }
@@ -72,6 +75,36 @@ struct ChatgptView: View {
                     print(failure.localizedDescription)
                     searching = false
             }
+        }
+    }
+}
+
+struct QuestionBubble: View {
+    let text: String
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Text(text)
+                .padding()
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(10)
+                .foregroundColor(.black)
+        }
+    }
+}
+
+struct AnswerBubble: View {
+    let text: String
+    
+    var body: some View {
+        HStack {
+            Text(text)
+                .padding()
+                .background(Color.blue.opacity(0.9))
+                .cornerRadius(10)
+                .foregroundColor(.white)
+            Spacer()
         }
     }
 }
