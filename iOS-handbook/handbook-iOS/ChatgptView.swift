@@ -28,6 +28,7 @@ struct ChatgptView: View {
                                 QuestionBubble(text: qa.question)
                             }
                         }
+                        
                     }
                     .padding()
                     .frame(maxHeight: 600)
