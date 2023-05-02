@@ -13,6 +13,10 @@ app.config["SQLALCHEMY_ECHO"] = True
 db.init_app(app)
 with app.app_context():
     db.create_all()
+
+@app.route("/")
+def welcome():
+    return "Test, this server is working!"
     
 @app.route("/api/books/")
 def get_books():
@@ -74,7 +78,7 @@ def get_messages():
     get all messages
     """
     messages = [m.serialize() for m in Message.query.all()]
-    return json.dumps(messages.serialize()), 200
+    return json.dumps({"messages": messages}), 200
 
 @app.route("/api/messages/<int:message_id>/")
 def get_message(message_id):

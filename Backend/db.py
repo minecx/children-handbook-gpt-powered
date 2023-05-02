@@ -23,8 +23,8 @@ class Book(db.Model):
     bookname = db.Column(db.String, nullable = False)
     author = db.Column(db.String, nullable = False)
     description = db.Column(db.String, nullable = False)
-    story_body = db.Column(db.Text, nullable = False)
     genre = db.Column(db.String, nullable = False)
+    story = db.Column(db.String, nullable = False)
     book_url = db.Column(db.String, nullable = False)
     book_cover = db.Column(db.String, nullable = False)
     saved_by_users = db.relationship("User",secondary=saved_books,back_populates="books_saved")
@@ -38,7 +38,7 @@ class Book(db.Model):
         self.bookname = kwargs.get("name")
         self.author = kwargs.get("author")
         self.description = kwargs.get("description")
-        self.story_body = kwargs.get("story_body")
+        self.story = kwargs.get("story","")
         self.genre = kwargs.get("genre")
         self.book_url = kwargs.get("book_url")
         self.book_cover = kwargs.get("book_cover")
@@ -52,7 +52,7 @@ class Book(db.Model):
             "bookname" : self.bookname,
             "author" : self.author,
             "description" : self.description,
-            "story_body" : self.story_body,
+            "story" : self.story,
             "genre" : self.genre,
             "book_url" : self.book_url,
             "book_cover" : self.book_cover
@@ -69,7 +69,7 @@ class Music(db.Model):
     artist = db.Column(db.String, nullable = False)
     music_url = db.Column(db.String, nullable = False)
     music_cover = db.Column(db.String, nullable = False)
-    length = db.Column(db.Integer, nullabe = False)
+    length = db.Column(db.Integer, nullable = False)
 
     def __init__(self, **kwargs):
         """
@@ -141,7 +141,7 @@ class Message(db.Model):
     """
     __tablename__ = "message"
     id = db.Column(db.Integer, primary_key = True, autoincrement= True)
-    timestamp = db.Column(db.DateTime, nullabe = False) #datetime
+    timestamp = db.Column(db.DateTime, nullable = False) 
     question = db.Column(db.String, nullable = False)
     answer = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
