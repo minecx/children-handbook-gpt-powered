@@ -11,7 +11,9 @@ import GoogleSignIn
 import Firebase
 
 struct FirebaseAuth {
-    static let share = FirebaseAuth()
+    static var share = FirebaseAuth()
+    
+    var userData = User(firstName: "Userrr")
     
     private init() {}
     
@@ -35,6 +37,9 @@ struct FirebaseAuth {
               completion(error)
               return
           }
+            
+            FirebaseAuth.share.userData.firstName = user.profile?.givenName ?? ""
+            FirebaseAuth.share.userData.lastName = user.profile?.familyName ?? ""
 
           let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                          accessToken: user.accessToken.tokenString)

@@ -14,6 +14,7 @@
 		702597C42A02A5DC00783EFE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 702597C32A02A5DC00783EFE /* GoogleSignInSwift */; };
 		702597C72A02A76200783EFE /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702597C62A02A76200783EFE /* +View.swift */; };
 		702597C92A02D58C00783EFE /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702597C82A02D58C00783EFE /* FirebaseAuth.swift */; };
+		702597CB2A02DE4300783EFE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702597CA2A02DE4300783EFE /* User.swift */; };
 		70B8DA0129F715EE00F37B25 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 70B8DA0029F715EE00F37B25 /* OpenAISwift */; };
 		70B8DA0329F71BEC00F37B25 /* ChatgptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */; };
 		8DA88D0B29F8EB5E0018F601 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA88D0A29F8EB5E0018F601 /* DiscoverView.swift */; };
@@ -35,6 +36,7 @@
 		702597C52A02A61000783EFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		702597C62A02A76200783EFE /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
 		702597C82A02D58C00783EFE /* FirebaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
+		702597CA2A02DE4300783EFE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatgptView.swift; sourceTree = "<group>"; };
 		8DA88D0A29F8EB5E0018F601 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		8DA88D0C29F8EF4A0018F601 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				C4D99E4C29F605D800FEFF0B /* Preview Content */,
 				8DF97B9129F8EB08005AE953 /* Config.swift */,
 				8DA88D1429F8F6390018F601 /* MovingBubblesView.swift */,
+				702597CA2A02DE4300783EFE /* User.swift */,
 			);
 			path = "handbook-iOS";
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				8DA88D0D29F8EF4A0018F601 /* ContentView.swift in Sources */,
 				8DA88D1329F8F6190018F601 /* LoginView.swift in Sources */,
 				702597C72A02A76200783EFE /* +View.swift in Sources */,
+				702597CB2A02DE4300783EFE /* User.swift in Sources */,
 				702597C92A02D58C00783EFE /* FirebaseAuth.swift in Sources */,
 				C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */,
 				8DA88D1129F8F6000018F601 /* SignupView.swift in Sources */,

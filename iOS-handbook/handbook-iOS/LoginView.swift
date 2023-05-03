@@ -93,9 +93,8 @@ struct LoginView: View {
                                     .stroke(Color.white, lineWidth: 2)
                             )
                         Button {
-                            //TODO:
                             FirebaseAuth.share.signInWithGoogle(presenting: getRootViewController()) { error in
-                                print("ERROR: \(error)")
+                                print("ERROR: \(String(describing: error) )")
                             }
                         } label: {
                             Image("GoogleIcon")
