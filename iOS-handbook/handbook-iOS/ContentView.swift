@@ -28,8 +28,7 @@ struct ContentView: View {
                     case .chat:
                         ChatgptView()
                     case .profile:
-                        //TODO: Show profile view
-                        DiscoverView()
+                        ExistingProfileView()
                     default:
                         //TODO: Show discover view
                         DiscoverView()
@@ -40,6 +39,7 @@ struct ContentView: View {
                 Spacer()
                 HomeView(selectedTab: $selectedTab)
                     .padding(.bottom, -34) // << this one
+                    .ignoresSafeArea(.keyboard)
             }
         }
     }

@@ -21,6 +21,7 @@ struct HomeView: View {
     }
     var body: some View {
         VStack{
+            Spacer()
             HStack{
                 ForEach(Tab.allCases, id: \.rawValue) { tab in
                     Spacer()
@@ -38,6 +39,7 @@ struct HomeView: View {
             .background(Color("TabBarColor"))
             .cornerRadius(30, corners: [.topLeft, .topRight])
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 
