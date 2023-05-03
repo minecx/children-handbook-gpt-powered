@@ -66,7 +66,9 @@ struct SignupView: View {
                                     .stroke(Color.white, lineWidth: 2)
                             )
                         Button {
-                            //TODO:
+                            FirebaseAuth.share.signInWithGoogle(presenting: getRootViewController()) { error in
+                                print("ERROR: \(String(describing: error) )")
+                            }
                         } label: {
                             Image("GoogleIcon")
                                 .resizable()

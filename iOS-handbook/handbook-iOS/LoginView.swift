@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import GoogleSignIn
+import Firebase
 
 struct LoginView: View {
     @State private var userName: String = ""
@@ -90,7 +93,9 @@ struct LoginView: View {
                                     .stroke(Color.white, lineWidth: 2)
                             )
                         Button {
-                            //TODO:
+                            FirebaseAuth.share.signInWithGoogle(presenting: getRootViewController()) { error in
+                                print("ERROR: \(String(describing: error) )")
+                            }
                         } label: {
                             Image("GoogleIcon")
                                 .resizable()

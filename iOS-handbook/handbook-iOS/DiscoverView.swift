@@ -35,11 +35,13 @@ let musics = [
     "sample_music2",
     "sample_music3",
 ]
-let username = "Userrrr"
+//let username = "Userrrr"
+let username = FirebaseAuth.share.userData.firstName
+//print("User name: ", user.name ?? "unknown")
+//print("User email: ", user.email ?? "unknown")
 
 struct DiscoverView: View {
     @State private var buttonStates = Array(repeating: false, count: bookCategories.count)
-    
     var body: some View {
         ScrollView(.vertical) {
             HStack {

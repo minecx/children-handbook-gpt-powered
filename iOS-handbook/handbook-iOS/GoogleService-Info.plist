@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>545771820787-pa6188jo85kc7ejcgslveo6tgm5s2lfn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.545771820787-pa6188jo85kc7ejcgslveo6tgm5s2lfn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB0LcSWpSyrgAU_SXZIMaHdOLXFo2v2yIc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>545771820787</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>CornellAppDevSP23.handbook-iOS</string>
+	<key>PROJECT_ID</key>
+	<string>children-handbook</string>
+	<key>STORAGE_BUCKET</key>
+	<string>children-handbook.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:545771820787:ios:c269e06aca42453ee54986</string>
+</dict>
+</plist>
