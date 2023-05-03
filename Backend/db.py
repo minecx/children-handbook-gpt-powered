@@ -35,7 +35,7 @@ class Book(db.Model):
         Initializes a Book object
         """
         self.id = kwargs.get("id")
-        self.bookname = kwargs.get("name")
+        self.bookname = kwargs.get("bookname")
         self.author = kwargs.get("author")
         self.description = kwargs.get("description")
         self.story = kwargs.get("story","")
@@ -141,7 +141,7 @@ class Message(db.Model):
     """
     __tablename__ = "message"
     id = db.Column(db.Integer, primary_key = True, autoincrement= True)
-    timestamp = db.Column(db.DateTime, nullable = False) 
+    timestamp = db.Column(db.String, nullable = False) 
     question = db.Column(db.String, nullable = False)
     answer = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)

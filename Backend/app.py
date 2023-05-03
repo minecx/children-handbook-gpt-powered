@@ -96,14 +96,15 @@ def create_book():
     create a book
     """
     body = json.loads(request.data)
-    if body.get("bookname") is None:
+    bn = body.get("bookname")
+    if bn is None:
         return json.dumps({"error":"Error message: no bookname"}), 400
     if body.get("author") is None:
         return json.dumps({"error":"Error message: no author"}), 400
     if body.get("description") is None:
         return json.dumps({"error":"Error message: no description"}), 400
-    if body.get("story_body") is None:
-        return json.dumps({"error":"Error message: no story_body"})
+    if body.get("story") is None:
+        return json.dumps({"error":"Error message: no story"})
     if body.get("genre") is None:
         return json.dumps({"error":"Error message: no genre"}), 400
     if body.get("book_url") is None:
@@ -111,10 +112,10 @@ def create_book():
     if body.get("book_cover") is None:
         return json.dumps({"error":"Error message: no book_cover"}), 400
     new_book = Book(
-        bookname = body.get("bookname"),
+        bookname = bn,
         author = body.get("author"),
         description = body.get("description"),
-        story_body = body.get("story_body"),
+        story = body.get("story"),
         genre = body.get("genre"),
         book_url = body.get("book_url"),
         book_cover = body.get("book_cover")
@@ -123,7 +124,7 @@ def create_book():
     db.session.commit()
     return json.dumps(new_book.serialize()), 201
 
-@app.route("/api/musics/", methods=["POST"])
+@app.route("/api/music/", methods=["POST"])
 def create_music():
     """
     create an music
