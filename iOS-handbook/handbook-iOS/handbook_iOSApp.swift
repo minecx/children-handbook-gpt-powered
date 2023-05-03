@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct handbook_iOSApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @AppStorage("signIn") var isSignIn = false
+
     var body: some Scene {
         WindowGroup {
-//            OnboardingView()
+            OnboardingView()
 //            ContentView()
-            ChatgptView()
+//            ChatgptView()
         }
     }
 }
