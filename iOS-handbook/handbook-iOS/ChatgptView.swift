@@ -1,3 +1,10 @@
+//
+//  ChatgptView.swift
+//  handbook-iOS
+//
+//  Created by Ann Zhou on 4/24/23.
+//
+
 import SwiftUI
 import OpenAISwift
 import Foundation
@@ -175,8 +182,6 @@ struct ChatgptView: View {
                 searching = false
             }
         }
-        .padding(.top)
-        .padding(.bottom, 50)
     }
     
     private func performWriteStoryOpenAISearch() {
@@ -239,38 +244,10 @@ struct ChatgptView: View {
     }
 }
 
-struct QuestionBubble: View {
-    let text: String
-    
-    var body: some View {
-        HStack {
-            Spacer()
-            Text(text)
-                .padding()
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(10)
-                .foregroundColor(.black)
-        }
-    }
-}
-
-struct AnswerBubble: View {
-    let text: String
-    
-    var body: some View {
-        HStack {
-            Text(text)
-                .padding()
-                .background(Color.blue.opacity(0.9))
-                .cornerRadius(10)
-                .foregroundColor(.white)
-            Spacer()
-        }
-    }
-}
-
 struct ChatgptView_Previews: PreviewProvider {
     static var previews: some View {
+        // this needs to be itself
+        // otherwise it shows something else
         ChatgptView()
     }
 }

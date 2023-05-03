@@ -16,6 +16,7 @@ struct ExistingProfileView: View {
     
     let cuteAnimalEmojis = ["🐶", "🐽", "🐰", "🐼", "🐻", "🐨", "🐷", "🐿️", "🦀️", "🐒", "🐥", "🐹", "🐝"]
     @State private var generatedEmoji: String = "🐤"
+    
     init() {
         generatedEmoji = cuteAnimalEmojis.randomElement() ?? ""
     }
@@ -24,7 +25,6 @@ struct ExistingProfileView: View {
     }
     
     @State private var showIndication: Bool = false
-    
     
     var body: some View {
         
@@ -108,9 +108,9 @@ struct ExistingProfileView: View {
                             .onChange(of: selectedDate, perform: { _ in
                                 calendarId += 1
                             })
-                            .onTapGesture {
-                                calendarId += 1
-                            }
+//                            .onTapGesture {
+//                                calendarId += 1
+//                            }
                     }
                     .padding(.bottom)
                     
