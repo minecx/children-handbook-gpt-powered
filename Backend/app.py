@@ -1,4 +1,4 @@
-from db import db, Book, Music, User, Message
+from db import db, Asset, Book, Music, User, Message
 from flask import Flask, request
 import json
 import os
@@ -275,6 +275,23 @@ def continue_book(book_id, user_id):
     user.continue_books.append(book)
     db.session.commit()
     return json.dumps(user.serialize()),201
+
+@app.route("/upload/", methods=["POST"])
+def upload():
+    """
+    Endpoint for uploading an image to AWS given its base64 form,
+    then storing/returning the URL of that image
+    """
+    body = json.loads(request.data)
+    image_data = body.get("image_data")
+    if image_data is None:
+        return json.dumps({"error":"No Base64 URL"}),400
+    
+    #create new Asset object
+    asset = Asset(image_data = image_data)
+    db.session.add(asset)
+    db.session.commit()
+    return json.dumps(asset.serialize()),201
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
