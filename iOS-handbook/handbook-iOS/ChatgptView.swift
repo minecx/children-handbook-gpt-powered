@@ -142,7 +142,7 @@ struct ChatgptView: View {
                 .background(.clear)
         }
         .padding(.horizontal)
-        .padding(.bottom, 10)
+        .padding(.bottom, 50)
         .background(MovingBubblesView())
     }
     
