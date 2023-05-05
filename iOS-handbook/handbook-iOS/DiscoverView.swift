@@ -176,18 +176,37 @@ struct DiscoverView: View {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                // network error
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                // Handle invalid HTTP response
+                print("Invalid response")
+                return
+            }
+            
             if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode([Book].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.fetchedBooks = decodedResponse
-                        print(self.fetchedBooks)
+                if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let bookArray = json["books"] as? [[String: Any]] {
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: bookArray, options: [])
+                        let decodedResponse = try JSONDecoder().decode([Book].self, from: jsonData)
+                        DispatchQueue.main.async {
+                            self.fetchedBooks = decodedResponse
+                            print(self.fetchedBooks)
+                        }
+                    } catch {
+                        print("Error decoding JSON: \(error)")
                     }
-                    return
                 }
             }
-            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
-        }.resume()
+        }
+        task.resume()
     }
     
     func seeAllBooks() {
