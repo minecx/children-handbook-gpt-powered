@@ -17,13 +17,14 @@ struct ChatRow: View {
                     .fill(LinearGradient(gradient: Gradient(colors: [Color("BubbleColor1"), Color("BubbleColor3")]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     .frame(width: 50, height: 50)
                 Text("🤖️")
-                    .font(.system(size: 45))
+                    .font(.system(size: 35))
             }
             Spacer()
+
             Text(chat.messages.last?.text ?? "")
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.gray)
-                .lineLimit(2)
+                .font(.system(size: 14, weight: .regular))
+                .foregroundColor(.black)
+                .lineLimit(3)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(chat.messages.last?.date.descriptiveString() ?? "")
                 .font(.system(size: 14, weight: .semibold))

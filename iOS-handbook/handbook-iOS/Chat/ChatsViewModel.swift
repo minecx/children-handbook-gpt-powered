@@ -18,4 +18,10 @@ class ChatsViewModel: ObservableObject {
         }
         return nil
     }
+    
+    func deleteChat(_ chat: Chat) {
+        if let index = chats.firstIndex(where: { $0.id == chat.id }) {
+            chats.remove(at: index)
+        }
+    }
 }
