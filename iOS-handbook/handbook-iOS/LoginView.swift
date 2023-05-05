@@ -66,7 +66,7 @@ struct LoginView: View {
                 }
                 .frame(width: geo.size.width, alignment: .leading)
                 .padding(.bottom)
-                
+                                
                 Button {
                     //TODO: Password and Account verification API call
                     showContentView = true

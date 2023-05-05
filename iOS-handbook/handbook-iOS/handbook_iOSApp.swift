@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct handbook_iOSApp: App {
+    var sharedData = SharedData()
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @AppStorage("signIn") var isSignIn = false
     @StateObject var userData: User = User(firstName: "First Name", lastName: "Last Name")
@@ -17,8 +19,10 @@ struct handbook_iOSApp: App {
         WindowGroup {
             OnboardingView()
                 .environmentObject(userData)
-            // DiscoverView()
-            //     .environmentObject(userData)
+                .environmentObject(sharedData)
+//             DiscoverView()
+//                 .environmentObject(userData)
+//            ChatTableView()
         }
     }
 }
