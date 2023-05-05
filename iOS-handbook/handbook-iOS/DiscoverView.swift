@@ -36,16 +36,19 @@ let musics = [
     "sample_music3",
 ]
 //let username = "Userrrr"
-let username = FirebaseAuth.share.userData.firstName
+//let username = FirebaseAuth.share.userData.firstName
 //print("User name: ", user.name ?? "unknown")
 //print("User email: ", user.email ?? "unknown")
 
 struct DiscoverView: View {
+    
     @State private var buttonStates = Array(repeating: false, count: bookCategories.count)
+    @EnvironmentObject var userData: User
+    
     var body: some View {
         ScrollView(.vertical) {
             HStack {
-                Text("Hello, \n\(username)!")
+                Text("Hello, \n\(userData.firstName)!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 
@@ -84,18 +87,32 @@ struct DiscoverView: View {
                 .padding(.horizontal)
             }
             
-            ScrollView(.horizontal) {
-                HStack(spacing: genericPadding) {
-                    ForEach(0..<books.count) { index in
-                        Button(action: {
-                            print("hit")
-                        }) {
-                            Image(books[index])
+//            ScrollView(.horizontal) {
+//                HStack(spacing: genericPadding) {
+//                    ForEach(0..<books.count) { index in
+//                        Button(action: {
+//                            print("hit book")
+//
+//                        }) {
+//                            Image(books[index])
+//                        }
+//                    }
+//                }
+//            }
+//            .padding(.horizontal)
+//
+            NavigationView {
+                ScrollView(.horizontal) {
+                    HStack(spacing: genericPadding) {
+                        ForEach(0..<books.count) { index in
+                            NavigationLink(destination: DetailedBookView(book: books[index])) {
+                                Image(books[index])
+                            }
                         }
                     }
                 }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
             
             Text("Continue Reading")
                 .font(.title)
