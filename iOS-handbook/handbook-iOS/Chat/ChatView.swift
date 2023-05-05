@@ -148,6 +148,18 @@ struct ChatView: View {
         }
     }
     
+    func sendMessageImage() {
+        if let message = viewModel.sendMessage("Draw a picture", type: .Sent, in: chat) {
+            messageIDToScroll = message.id
+        }
+    }
+    
+    func sendMessageStory() {
+        if let message = viewModel.sendMessage("Write a story", type: .Sent, in: chat) {
+            messageIDToScroll = message.id
+        }
+    }
+    
     func addBotMessage(answer: String) {
         if let message = viewModel.sendMessage(answer, type: .Received, in: chat) {
             search = ""
@@ -252,7 +264,7 @@ struct ChatView: View {
             switch result {
             case .success(let success):
                 //for display purposes
-                sendMessage()
+                sendMessageStory()
                 addBotMessage(answer: success.choices?.first?.message.content ?? "Sorry, I don't understand your question.")
                 
                 let botChatMessage = ChatMessage(role: .assistant, content: success.choices?.first?.message.content ?? "Sorry, I don't understand your question.")
@@ -275,7 +287,7 @@ struct ChatView: View {
             case .success(let success):
                 DispatchQueue.main.async {
                     //for display purposes
-                    sendMessage()
+                    sendMessageImage()
                     addBotMessage(answer: success.data?.first?.url  ?? "")
                     
                     let botChatMessage = ChatMessage(role: .assistant, content: success.data?.first?.url  ?? "")
