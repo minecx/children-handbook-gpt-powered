@@ -14,6 +14,8 @@ struct OnboardingView: View {
     @State private var showSignupView:Bool = false
     @State private var showLoginView:Bool = false
     
+    @EnvironmentObject var userData: User
+    
     var body: some View {
         GeometryReader { geo in
             HStack(spacing: 0){
@@ -154,6 +156,7 @@ struct OnboardingView: View {
                         SignupView()
                             .presentationDetents([.medium, .large])
                             .presentationDragIndicator(.visible)
+                            .environmentObject(userData)
                     }
                     
                     Button {
@@ -168,6 +171,7 @@ struct OnboardingView: View {
                         LoginView()
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
+                            .environmentObject(userData)
                     }
                 }
             }

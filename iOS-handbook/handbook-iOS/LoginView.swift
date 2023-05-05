@@ -19,6 +19,8 @@ struct LoginView: View {
     
     @State private var showContentView: Bool = false
     
+    @EnvironmentObject var userData: User
+    
     var body: some View {
         GeometryReader { geo in
             VStack{
@@ -93,8 +95,9 @@ struct LoginView: View {
                                     .stroke(Color.white, lineWidth: 2)
                             )
                         Button {
-                            FirebaseAuth.share.signInWithGoogle(presenting: getRootViewController()) { error in
-                                print("ERROR: \(String(describing: error) )")
+                            FirebaseAuth.share.signInWithGoogle(presenting: getRootViewController()) { user in
+                                userData.firstName = user.firstName
+                                userData.lastName = user.lastName
                             }
                         } label: {
                             Image("GoogleIcon")
