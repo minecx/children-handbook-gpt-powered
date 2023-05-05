@@ -44,6 +44,8 @@
 		C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */; };
 		C4D99E4B29F605D800FEFF0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D99E4A29F605D800FEFF0B /* Assets.xcassets */; };
 		C4D99E4E29F605D800FEFF0B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */; };
+		C4F46B262A04B09E00A7B1BE /* DetailedMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F46B252A04B09E00A7B1BE /* DetailedMusicView.swift */; };
+		C4F46B282A04B70800A7B1BE /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F46B272A04B70800A7B1BE /* Book.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,8 @@
 		C4D99E4629F605D700FEFF0B /* handbook_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handbook_iOSApp.swift; sourceTree = "<group>"; };
 		C4D99E4A29F605D800FEFF0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4D99E4D29F605D800FEFF0B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C4F46B252A04B09E00A7B1BE /* DetailedMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMusicView.swift; sourceTree = "<group>"; };
+		C4F46B272A04B70800A7B1BE /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 				8DA88D0C29F8EF4A0018F601 /* ContentView.swift */,
 				C459F6AB29F8C11B00C24536 /* HomeView.swift */,
 				8DA88D0A29F8EB5E0018F601 /* DiscoverView.swift */,
+				C4F46B272A04B70800A7B1BE /* Book.swift */,
 				70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */,
 				8DA88D1629F9AA820018F601 /* CreateProfileView.swift */,
 				8D848CB129FA5A3A00D3B878 /* ExistingProfileView.swift */,
@@ -185,6 +190,7 @@
 				8D848CB929FC211F00D3B878 /* Model */,
 				8D848CD129FD4EBB00D3B878 /* view */,
 				702597DD2A04863D00783EFE /* DetailedBookView.swift */,
+				C4F46B252A04B09E00A7B1BE /* DetailedMusicView.swift */,
 			);
 			path = "handbook-iOS";
 			sourceTree = "<group>";
@@ -296,12 +302,14 @@
 				C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */,
 				8D848CC029FC231000D3B878 /* ErrorView.swift in Sources */,
 				8D848CC629FC285000D3B878 /* APIerror.swift in Sources */,
+				C4F46B282A04B70800A7B1BE /* Book.swift in Sources */,
 				8D848CD329FD521900D3B878 /* BreedRow.swift in Sources */,
 				8DA88D1129F8F6000018F601 /* SignupView.swift in Sources */,
 				8D848CCE29FD408300D3B878 /* BreedListView.swift in Sources */,
 				8DF97B9229F8EB08005AE953 /* Config.swift in Sources */,
 				8DA88D0B29F8EB5E0018F601 /* DiscoverView.swift in Sources */,
 				8D848CBC29FC216300D3B878 /* BreedFetcher.swift in Sources */,
+				C4F46B262A04B09E00A7B1BE /* DetailedMusicView.swift in Sources */,
 				8DA88D1929F9AAB20018F601 /* ImagePicker.swift in Sources */,
 				8D848CB229FA5A3A00D3B878 /* ExistingProfileView.swift in Sources */,
 				8D848CD029FD467900D3B878 /* APIService.swift in Sources */,

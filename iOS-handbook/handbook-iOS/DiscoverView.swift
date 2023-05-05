@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let backendURL = "http://35.236.214.238/api"
+
 let ourGray = Color(red: 153/255, green: 153/255, blue: 153/255)
 let genericPadding: CGFloat = 20
 let bookCategories = [
@@ -42,11 +44,21 @@ let musics = [
 
 struct DiscoverView: View {
     
+    @State private var fetchedBooks: [Book] = []
     @State private var buttonStates = Array(repeating: false, count: bookCategories.count)
     @EnvironmentObject var userData: User
     
     var body: some View {
         ScrollView(.vertical) {
+            
+            // MARK: solely for testing purpose
+            List(fetchedBooks, id: \.self) { item in
+                Text(item.bookname)
+            }
+            .onAppear {
+                getAllBooks()
+            }
+            
             HStack {
                 Text("Hello, \n\(userData.firstName)!")
                     .font(.largeTitle)
@@ -157,6 +169,25 @@ struct DiscoverView: View {
         }
         .padding(.top)
         .padding(.bottom, 50)
+    }
+
+    func getAllBooks() {
+        let url = URL(string: "\(backendURL)/books")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode([Book].self, from: data) {
+                    DispatchQueue.main.async {
+                        self.fetchedBooks = decodedResponse
+                        print(self.fetchedBooks)
+                    }
+                    return
+                }
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
     }
     
     func seeAllBooks() {
