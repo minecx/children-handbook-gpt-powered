@@ -49,57 +49,58 @@ struct DiscoverView: View {
     @EnvironmentObject var userData: User
     
     var body: some View {
-        ScrollView(.vertical) {
+        NavigationView {
             
-            // MARK: solely for testing purpose
-            List(fetchedBooks, id: \.self) { item in
-                Text(item.bookname)
-            }
-            .onAppear {
-                getAllBooks()
-            }
-            
-            HStack {
-                Text("Hello, \n\(userData.firstName)!")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+            ScrollView(.vertical) {
                 
-                Spacer()
-                
-                Image("sample_avatar")
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                Text("Books For You")
-                    .font(.title)
-                
-                Spacer()
-                
-                Button(action: {
-                    seeAllBooks()
-                }) {
-                    Text("See All")
-                        .foregroundColor(ourGray)
+                // MARK: solely for testing purpose
+                List(fetchedBooks, id: \.self) { item in
+                    Text(item.bookname)
                 }
-            }
-            .padding(.horizontal)
-            
-            ScrollView(.horizontal) {
-                HStack(spacing: genericPadding) {
-                    ForEach(0..<buttonStates.count) { index in
-                        Button(action: {
-                            switchCategory(index: index)
-                        }) {
-                            Text(bookCategories[index])
-                                .foregroundColor(buttonStates[index] ? Color.blue : ourGray)
-                        }
+                .onAppear {
+                    getAllBooks()
+                }
+                
+                HStack {
+                    Text("Hello, \n\(userData.firstName)!")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    
+                    Spacer()
+                    
+                    Image("sample_avatar")
+                }
+                .padding(.horizontal)
+                
+                HStack {
+                    Text("Books For You")
+                        .font(.title)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        seeAllBooks()
+                    }) {
+                        Text("See All")
+                            .foregroundColor(ourGray)
                     }
                 }
                 .padding(.horizontal)
-            }
-
-            NavigationView {
+                
+                ScrollView(.horizontal) {
+                    HStack(spacing: genericPadding) {
+                        ForEach(0..<buttonStates.count) { index in
+                            Button(action: {
+                                switchCategory(index: index)
+                            }) {
+                                Text(bookCategories[index])
+                                    .foregroundColor(buttonStates[index] ? Color.blue : ourGray)
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+                
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(0..<books.count) { index in
@@ -110,48 +111,48 @@ struct DiscoverView: View {
                     }
                 }
                 .padding(.horizontal)
-            }
-            
-            Text("Continue Reading")
-                .font(.title)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                
+                Text("Continue Reading")
+                    .font(.title)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 // padding left
-                .padding(.leading)
-            
-            Text("TODO: should be hidden if none found")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-            
-            // TODO: hide if none found in history
-            ScrollView(.horizontal) {
-                HStack(spacing: genericPadding) {
-                    ForEach(1..<5) { index in
-                        Button(action: {
-                            print("hit")
-                        }) {
-                            Image(books[index])
+                    .padding(.leading)
+                
+                Text("TODO: should be hidden if none found")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                
+                // TODO: hide if none found in history
+                ScrollView(.horizontal) {
+                    HStack(spacing: genericPadding) {
+                        ForEach(1..<5) { index in
+                            NavigationLink(destination: DetailedBookView(book: books[index])) {
+                                VStack {
+                                    Image(books[index])
+                                    Text(books[index]).foregroundColor(.black)
+                                }
+                            }
                         }
                     }
                 }
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                Text("Music Ignites")
-                    .font(.title)
+                .padding(.horizontal)
                 
-                Spacer()
-                
-                Button(action: {
-                    seeAllMusic()
-                }) {
-                    Text("See All")
-                        .foregroundColor(ourGray)
+                HStack {
+                    Text("Music Ignites")
+                        .font(.title)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        seeAllMusic()
+                    }) {
+                        Text("See All")
+                            .foregroundColor(ourGray)
+                    }
                 }
-            }
-            .padding(.horizontal)
-            
-            NavigationView {
+                .padding(.horizontal)
+                
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(0..<musics.count) { index in
@@ -165,10 +166,11 @@ struct DiscoverView: View {
                     }
                 }
                 .padding(.horizontal)
+                
             }
+            .padding(.top)
+            .padding(.bottom, 50)
         }
-        .padding(.top)
-        .padding(.bottom, 50)
     }
 
     func getAllBooks() {
