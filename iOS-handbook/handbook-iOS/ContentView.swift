@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var sharedData: SharedData
+    
     @State private var selectedTab: Tab = .discover
     
     init() {
@@ -26,7 +28,7 @@ struct ContentView: View {
                         //TODO: Show collection view
                         DiscoverView()
                     case .chat:
-                        ChatgptView()
+                        ChatTableView()
                     case .profile:
                         ExistingProfileView()
                     default:
@@ -37,9 +39,11 @@ struct ContentView: View {
             }
             VStack{
                 Spacer()
-                HomeView(selectedTab: $selectedTab)
-                    .padding(.bottom, -34) // << this one
-                    .ignoresSafeArea(.keyboard)
+                if sharedData.isHomeViewVisible {
+                    HomeView(selectedTab: $selectedTab)
+                        .padding(.bottom, -34)
+                        .ignoresSafeArea(.keyboard)
+                }
             }
         }
     }
