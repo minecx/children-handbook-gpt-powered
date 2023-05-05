@@ -52,15 +52,7 @@ struct DiscoverView: View {
         NavigationView {
             
             ScrollView(.vertical) {
-                
-                // MARK: solely for testing purpose
-                List(fetchedBooks, id: \.self) { item in
-                    Text(item.bookname)
-                }
-                .onAppear {
-                    getAllBooks()
-                }
-                
+
                 HStack {
                     Text("Hello, \n\(userData.firstName)!")
                         .font(.largeTitle)
@@ -103,15 +95,24 @@ struct DiscoverView: View {
                 
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
-                        ForEach(0..<books.count) { index in
-                            NavigationLink(destination: DetailedBookView(book: books[index])) {
-                                Image(books[index])
+                        ForEach(books, id: \.self) { book in
+                            NavigationLink(destination: DetailedBookView(book: book)) {
+                                Image(book)
                             }
                         }
                     }
                 }
                 .padding(.horizontal)
                 
+                // MARK: solely for testing purpose
+                HStack(spacing: genericPadding) {
+                    ForEach(fetchedBooks, id: \.self) { book in
+                        Text(book.bookname)
+                    }
+                }
+                .onAppear {
+                    getAllBooks()
+                }
                 
                 Text("Continue Reading")
                     .font(.title)
@@ -155,11 +156,11 @@ struct DiscoverView: View {
                 
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
-                        ForEach(0..<musics.count) { index in
-                            NavigationLink(destination: DetailedMusicView(music: musics[index])) {
+                        ForEach(musics, id: \.self) { mus in
+                            NavigationLink(destination: DetailedMusicView(music: mus)) {
                                 VStack {
-                                    Image(musics[index])
-                                    Text(musics[index]).foregroundColor(.black)
+                                    Image(mus)
+                                    Text(mus).foregroundColor(.black)
                                 }
                             }
                         }
