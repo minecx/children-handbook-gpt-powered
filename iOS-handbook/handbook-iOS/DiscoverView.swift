@@ -86,21 +86,7 @@ struct DiscoverView: View {
                 }
                 .padding(.horizontal)
             }
-            
-//            ScrollView(.horizontal) {
-//                HStack(spacing: genericPadding) {
-//                    ForEach(0..<books.count) { index in
-//                        Button(action: {
-//                            print("hit book")
-//
-//                        }) {
-//                            Image(books[index])
-//                        }
-//                    }
-//                }
-//            }
-//            .padding(.horizontal)
-//
+
             NavigationView {
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
@@ -153,23 +139,21 @@ struct DiscoverView: View {
             }
             .padding(.horizontal)
             
-            ScrollView(.horizontal) {
-                HStack(spacing: genericPadding) {
-                    ForEach(0..<musics.count) { index in
-                        VStack {
-                            Button(action: {
-                                print("hit")
-                            }) {
-                                Image(musics[index])
+            NavigationView {
+                ScrollView(.horizontal) {
+                    HStack(spacing: genericPadding) {
+                        ForEach(0..<musics.count) { index in
+                            NavigationLink(destination: DetailedMusicView(music: musics[index])) {
+                                VStack {
+                                    Image(musics[index])
+                                    Text(musics[index]).foregroundColor(.black)
+                                }
                             }
-                            
-                            // TODO: change song name
-                            Text("song")
                         }
                     }
                 }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
         }
         .padding(.top)
         .padding(.bottom, 50)
