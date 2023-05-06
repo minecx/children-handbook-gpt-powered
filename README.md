@@ -46,27 +46,28 @@ During the development process, we consulted the following resources to integrat
 ## Backend
 
 - Routes
-  - GET /api/books/
-  - GET /api/books/<int:book_id>/
-  - GET /api/music/
-  - GET /api/music/<int:music_id>/
-  - GET /api/users/
-  - GET /api/users/<int:user_id>/
-  - GET /api/messages/
-  - GET /api/messages/<int:message_id>/
-  - POST /api/books/
-  - POST /api/music/
-  - POST /api/users/
-  - POST /api/messages/<int:user_id>/
-  - DELETE /api/books/<int:book_id>/
-  - DELETE /api/music/<int:music_id>/
-  - DELETE /api/users/<int:user_id>/
-  - DELETE /api/messages/<int:message_id>/
+  - GET /api/books/ : get all books
+  - GET /api/books/<int:book_id>/ : get a book by id
+  - GET /api/music/ : get all musics
+  - GET /api/music/<int:music_id>/ : get an music by id
+  - GET /api/users/ : get all users
+  - GET /api/users/<int:user_id>/ : get a user by id
+  - GET /api/messages/ : get all messages
+  - GET /api/messages/<int:message_id>/ : get a message by id
+  - POST /api/books/ : create a book
+  - POST /api/music/ : create an music
+  - POST /api/users/ : create a user
+  - POST /api/messages/<int:user_id>/ : create a message
+  - DELETE /api/books/<int:book_id>/ : Delete a book by id
+  - DELETE /api/music/<int:music_id>/ : Delete a music by id
+  - DELETE /api/users/<int:user_id>/ : Delete a user by id
+  - DELETE /api/messages/<int:message_id>/ : Delete a message by id
   - POST /api/save/<int:user_id>/<int:book_id>/ : Save a book for a user, according to their respective ID
   - POST /api/continue/<int:user_id>/<int:book_id>/ : Mark a book as continue reading for a user, according to their respective ID
   - POST /upload/ : Endpoint for uploading an image to AWS given its base64 form, then storing/returning the URL of that image
 - Database Models
-  - Book
-  - Music
-  - User
-  - Message
+  - Asset : Asset Model
+  - Book : AudioBook Model
+  - Music : Music Model
+  - User : User Model
+  - Message : Message Model
