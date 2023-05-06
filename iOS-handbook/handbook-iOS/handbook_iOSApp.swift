@@ -17,9 +17,15 @@ struct handbook_iOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            OnboardingView()
-                .environmentObject(userData)
-                .environmentObject(sharedData)
+            if !isSignIn {
+                OnboardingView()
+                    .environmentObject(userData)
+                    .environmentObject(sharedData)
+            } else {
+                ContentView()
+                    .environmentObject(userData)
+                    .environmentObject(sharedData)
+            }
 //             DiscoverView()
 //                 .environmentObject(userData)
 //            ChatTableView()

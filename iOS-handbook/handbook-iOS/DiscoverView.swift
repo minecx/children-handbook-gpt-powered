@@ -59,6 +59,8 @@ struct DiscoverView: View {
                 }
                 .onAppear {
                     getAllBooks()
+                    // reset signIn in UserDefaults, for demo only
+//                    UserDefaults.standard.setValue(false, forKey: "signIn")
                 }
                 
                 HStack {
