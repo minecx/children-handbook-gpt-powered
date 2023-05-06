@@ -16,3 +16,8 @@ During the development process, we consulted the following resources to integrat
 - [Google OAuth tutorial](https://youtu.be/M5LiqOBDeGg)
 
 ## Backend
+
+- Routes
+  - /api/books/
+  - /api/books/<int:book_id>/
+  - /api/music/
