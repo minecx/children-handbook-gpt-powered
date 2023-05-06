@@ -4,29 +4,35 @@
 
 Our app is for parents to showcase fairytales to their children. We hope to provide a platform for parents to find books for their kids, bookmark them so they can come back for them later, and read them to their children. We also hope to provide a platform for parents to create their own stories and share them with other parents.
 
-We integrated Google OAuth into our app so that parents can log in with their Google accounts and save their favorite stories to their accounts, and we integrated ChatGPT into our app so that parents ask for story recommendations based on their children's interests as well as search for questions that they are not sure on the fly.
+We integrated Google OAuth with Firebase into our app so that parents can log in with their Google accounts and save their favorite stories to their accounts, and we integrated ChatGPT into our app so that parents ask for story recommendations based on their children's interests as well as search for questions that they are not sure on the fly.
 
 To do so, we built the following pages.
 
+## Setting Up
+
+We followed standard development practice by storing third party API keys in a separate file that is in .gitignore. In order for the App to be fully functional, please feel free to download the Config.swfit file [here](https://drive.google.com/file/d/18YMqIVPKbbtKqe1bapa2hPibzbiar7Aa/view?usp=sharing) and add it to the project root directory.
+
 ### Login / Sign Up Page
 
-This page allows users to log in with their Google accounts. We used Google OAuth to authenticate users and save their favorite stories to their accounts.
+This page allows users to log in with their Google accounts. We used Google OAuth with Firebase to authenticate users and save their favorite stories to their accounts.
 
-- *Unfinished*: Apple Login and FaceBook Login. Both requires a paid developer account to test which we do not have.
+_Unfinished_: For Google Login, we encountered issues to reset UserDefaults. It may take a couple of times in order for sign in function to work. We plan to implement Apple Login and FaceBook Login, which required developer account.
 
 ### Home Page
 
 We called it `DiscoverView.swift` in our app. This page allows users to search for stories based on their children's interests. If the users are logged in and have a reading history, we will show a "Continue Reading" section for them (only used mock data for now). They will also be able to check out music for their kids.
 
-*Unfinished*: In this section, the user should also be able to bookmark books and musics, so they can come back to them later in the bookmark page below.
+_Unfinished_: In this section, the user should also be able to bookmark books and musics, so they can come back to them later in the bookmark page below.
 
 ### Bookmark Page
 
-*Unfinished*.
+_Unfinished_.
 
 What should happen here is that users can see their bookmarked stories and read them to their children, as mentioned above.
 
 ### Chat Page
+
+_Please refer to Setting Up section above to get ChatGPT connected_.
 
 We called it `ChatgptView.swift` in our app. This page allows users to chat with ChatGPT. We used OpenAI's ChatGPT to generate responses to users' questions. It features the original ChatGPT experience - ask the AI anytime, and it will provide a response. You can also create new chats and delete chats to categorize your conversations.
 
@@ -34,7 +40,7 @@ We called it `ChatgptView.swift` in our app. This page allows users to chat with
 
 This page allows users to log out of their accounts. They can also change their preferred name and avatar here for social purposes.
 
-*Unfinished*: meet and have a chat with other parents.
+_Unfinished_: meet and have a chat with other parents.
 
 ### References
 
