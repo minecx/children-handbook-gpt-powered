@@ -87,9 +87,10 @@ struct DiscoverView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(handbooks, id: \.self) { book in
-                            VStack {
-                                Text(book.bookname)
-                            }
+//                            VStack {
+//                                Text(book.bookname)
+//                            }
+                            AsyncImage<Image>(url: Image("sample_book1"), placeholder: URL(string: book.book_url)!)
                         }
                     }
                     .onAppear {
@@ -114,7 +115,7 @@ struct DiscoverView: View {
                     // padding left
                     .padding(.leading)
 
-//                 TODO: hide if none found in history
+                // TODO: hide if none found in history
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(1..<3) { index in
@@ -169,7 +170,8 @@ struct DiscoverView: View {
             print("Invalid URL")
             return
         }
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
