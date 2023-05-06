@@ -96,29 +96,24 @@ def create_book():
     create a book
     """
     body = json.loads(request.data)
-    bn = body.get("bookname")
-    if bn is None:
-        return json.dumps({"error":"Error message: no bookname"}), 400
-    if body.get("author") is None:
-        return json.dumps({"error":"Error message: no author"}), 400
-    if body.get("description") is None:
-        return json.dumps({"error":"Error message: no description"}), 400
-    if body.get("story") is None:
-        return json.dumps({"error":"Error message: no story"})
-    if body.get("genre") is None:
-        return json.dumps({"error":"Error message: no genre"}), 400
-    if body.get("book_url") is None:
-        return json.dumps({"error":"Error message: no book_url"}), 400
-    if body.get("book_cover") is None:
-        return json.dumps({"error":"Error message: no book_cover"}), 400
+    bookname = body.get("bookname")
+    author = body.get("author")
+    description = body.get("description")
+    story = body.get("story")
+    genre = body.get("genre")
+    bookurl = body.get("book_url")
+    bookcover = body.get("book_cover")
+
+    if (bookname or author or description or story or genre or bookurl or bookcover) is None:
+        return json.dumps({"error":"Error message: missing information"}), 400
     new_book = Book(
-        bookname = bn,
-        author = body.get("author"),
-        description = body.get("description"),
-        story = body.get("story"),
-        genre = body.get("genre"),
-        book_url = body.get("book_url"),
-        book_cover = body.get("book_cover")
+        bookname = bookname,
+        author = author,
+        description = description,
+        story = story,
+        genre = genre,
+        book_url = bookurl,
+        book_cover = bookcover
     )
     db.session.add(new_book)
     db.session.commit()
@@ -130,22 +125,20 @@ def create_music():
     create an music
     """
     body = json.loads(request.data)
-    if body.get("musicname") is None:
-        return json.dumps({"error":"Error message: no musicname"}), 400
-    if body.get("artist") is None:
-        return json.dumps({"error":"Error message: no artist"}), 400
-    if body.get("music_url") is None:
-        return json.dumps({"error":"Error message: no music_url"}), 400
-    if body.get("music_cover") is None:
-        return json.dumps({"error":"Error message: no music_cover"}), 400
-    if body.get("length") is None:
-        return json.dumps({"error":"Error message: no length"})
+    musicname = body.get("musicname")
+    artist = body.get("artist")
+    musicurl = body.get("music_url")
+    musiccover = body.get("music_cover")
+    length = body.get("length")
+
+    if (musicname or artist or musicurl or musiccover or length) is None:
+        return json.dumps({"error":"Error message: missing information"}), 400
     new_music = Music(
-        musicname = body.get("musicname"),
-        artist = body.get("artist"),
-        music_url = body.get("music_url"),
-        music_cover = body.get("music_cover"),
-        length = body.get("length")
+        musicname = musicname,
+        artist = artist,
+        music_url = musicurl,
+        music_cover = musiccover,
+        length = length
     )
     db.session.add(new_music)
     db.session.commit()
@@ -157,26 +150,22 @@ def create_user():
     create a user
     """
     body = json.loads(request.data)
-    if body.get("username") is None:
-        return json.dumps({"error":"Error message: no username"}), 400
-    if body.get("password") is None:
-        return json.dumps({"error":"Error message: no password"}), 400
-    if body.get("email") is None:
-        return json.dumps({"error":"Error message: no email"}), 400
-    if body.get("pfp") is None:
-        return json.dumps({"error":"Error message: no pfp"}), 400
-    if body.get("social_media") is None:
-        return json.dumps({"error":"Error message: no social media"}), 400
-    if body.get("dob") is None:
-        return json.dumps({"error":"Error message: no date of birth"}), 400
+    username = body.get("username")
+    password = body.get("password")
+    email = body.get("email")
+    pfp = body.get("pfp")
+    social_media = body.get("social_media")
+    dob = body.get("dob")
+    if (username or password or email or pfp or social_media or dob) is None:
+        return json.dumps({"error":"Error message: missing information"}), 400
     
     new_user = User(
-        username = body.get("username"),
-        password = body.get("password"),
-        email = body.get("email"),
-        pfp = body.get("pfp"),
-        social_media = body.get("social_media"),
-        dob = body.get("dob")
+        username = username,
+        password = password,
+        email =email,
+        pfp = pfp,
+        social_media = social_media,
+        dob = dob
     )
     db.session.add(new_user)
     db.session.commit()
@@ -254,6 +243,9 @@ def delete_message(message_id):
 
 @app.route("/api/save/<int:user_id>/<int:book_id>/", methods = ["POST"])
 def save_book(book_id, user_id):
+    """
+    Save a book for a user, according to their respective ID
+    """
     user = User.query.filter_by(id=user_id).first()
     if user is None:
         return json.dumps({"error":"Error message: User not found"}),404
@@ -266,6 +258,9 @@ def save_book(book_id, user_id):
 
 @app.route("/api/continue/<int:user_id>/<int:book_id>/", methods = ["POST"])
 def continue_book(book_id, user_id):
+    """
+    Mark a book as continue reading for a user, according to their respective ID
+    """
     user = User.query.filter_by(id=user_id).first()
     if user is None:
         return json.dumps({"error":"Error message: User not found"}),404

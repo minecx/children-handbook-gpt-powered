@@ -230,6 +230,7 @@ class User(db.Model):
       Serializes a User object
       """
       return {
+        "id": self.id,
         "username" : self.username,
         "password" : self.password,
         "email" : self.email,
@@ -266,6 +267,7 @@ class Message(db.Model):
         Serializes a Message object
         """
         return {
+            "id":self.id,
             "timestamp" : self.timestamp,
             "question" : self.question,
             "answer" : self.answer,
