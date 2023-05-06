@@ -65,4 +65,6 @@ During the development process, we consulted the following resources to integrat
   - POST /api/save/<int:user_id>/<int:book_id>/ : Save a book for a user, according to their respective ID
   - POST /api/continue/<int:user_id>/<int:book_id>/ : Mark a book as continue reading for a user, according to their respective ID
   - POST /upload/ : Endpoint for uploading an image to AWS given its base64 form, then storing/returning the URL of that image
-  - 
+- Database Models
+  - Book
+  - Music
