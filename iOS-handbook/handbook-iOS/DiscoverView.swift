@@ -25,14 +25,8 @@ let books = [
     "sample_book1",
     "sample_book2",
     "sample_book3",
-    "sample_book1",
-    "sample_book2",
-    "sample_book3",
 ]
 let musics = [
-    "sample_music1",
-    "sample_music2",
-    "sample_music3",
     "sample_music1",
     "sample_music2",
     "sample_music3",
@@ -93,9 +87,10 @@ struct DiscoverView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(fetchedBooks, id: \.self) { book in
-//                            NavigationLink(destination: DetailedBookView(book: book)) {
+                            VStack {
                                 Image(book.bookname)
-//                            }
+                                Text(book.bookname)
+                            }
                         }
                     }
                     .onAppear {
@@ -107,17 +102,13 @@ struct DiscoverView: View {
                 Text("Continue Reading")
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                // padding left
+                    // padding left
                     .padding(.leading)
-                
-                Text("TODO: should be hidden if none found")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
                 
                 // TODO: hide if none found in history
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
-                        ForEach(1..<5) { index in
+                        ForEach(1..<3) { index in
                             NavigationLink(destination: DetailedBookView(book: books[index])) {
                                 VStack {
                                     Image(books[index])
@@ -191,7 +182,6 @@ struct DiscoverView: View {
                         let decodedResponse = try JSONDecoder().decode([Book].self, from: jsonData)
                         DispatchQueue.main.async {
                             self.fetchedBooks = decodedResponse
-                            print(self.fetchedBooks)
                         }
                     } catch {
                         print("Error decoding JSON: \(error)")

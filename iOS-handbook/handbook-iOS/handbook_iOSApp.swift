@@ -13,7 +13,7 @@ struct handbook_iOSApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @AppStorage("signIn") var isSignIn = false
-    @StateObject var userData: User = User(firstName: "First Name", lastName: "Last Name")
+    @StateObject var userData: User = User(firstName: "User", lastName: "Last Name")
 
     var body: some Scene {
         WindowGroup {
