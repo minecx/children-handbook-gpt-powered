@@ -61,3 +61,8 @@ During the development process, we consulted the following resources to integrat
   - DELETE /api/books/<int:book_id>/
   - DELETE /api/music/<int:music_id>/
   - DELETE /api/users/<int:user_id>/
+  - DELETE /api/messages/<int:message_id>/
+  - POST /api/save/<int:user_id>/<int:book_id>/ : Save a book for a user, according to their respective ID
+  - POST /api/continue/<int:user_id>/<int:book_id>/ : Mark a book as continue reading for a user, according to their respective ID
+  - POST /upload/ : Endpoint for uploading an image to AWS given its base64 form, then storing/returning the URL of that image
+  - 
