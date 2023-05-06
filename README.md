@@ -27,3 +27,9 @@ During the development process, we consulted the following resources to integrat
   - GET /api/messages/
   - GET /api/messages/<int:message_id>/
   - POST /api/books/
+  - POST /api/music/
+  - POST /api/users/
+  - POST /api/messages/<int:user_id>/
+  - DELETE /api/books/<int:book_id>/
+  - DELETE /api/music/<int:music_id>/
+  - DELETE /api/users/<int:user_id>/
