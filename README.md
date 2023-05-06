@@ -18,6 +18,12 @@ During the development process, we consulted the following resources to integrat
 ## Backend
 
 - Routes
-  - /api/books/
-  - /api/books/<int:book_id>/
-  - /api/music/
+  - GET /api/books/
+  - GET /api/books/<int:book_id>/
+  - GET /api/music/
+  - GET /api/music/<int:music_id>/
+  - GET /api/users/
+  - GET /api/users/<int:user_id>/
+  - GET /api/messages/
+  - GET /api/messages/<int:message_id>/
+  - POST /api/books/
