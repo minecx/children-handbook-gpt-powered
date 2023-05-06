@@ -2,6 +2,14 @@
 
 ## iOS App
 
+Our app is for parents to showcase fairytales to their children. We hope to provide a platform for parents to find books for their kids, bookmark them so they can come back for them later, and read them to their children. We also hope to provide a platform for parents to create their own stories and share them with other parents.
+
+We integrated Google OAuth into our app so that parents can log in with their Google accounts and save their favorite stories to their accounts, and we integrated ChatGPT into our app so that parents ask for story recommendations based on their children's interests as well as search for questions that they are not sure on the fly.
+
+To do so, we built the following pages:
+
+- TODO
+
 During the development process, we consulted the following resources to integrate ChatGPT and Google OAuth into our iOS app:
 
 - [OpenAI tutorial](https://youtu.be/XF8IbrNh7E0)
