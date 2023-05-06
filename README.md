@@ -44,3 +44,20 @@ During the development process, we consulted the following resources to integrat
 - [Google OAuth tutorial](https://youtu.be/M5LiqOBDeGg)
 
 ## Backend
+
+- Routes
+  - GET /api/books/
+  - GET /api/books/<int:book_id>/
+  - GET /api/music/
+  - GET /api/music/<int:music_id>/
+  - GET /api/users/
+  - GET /api/users/<int:user_id>/
+  - GET /api/messages/
+  - GET /api/messages/<int:message_id>/
+  - POST /api/books/
+  - POST /api/music/
+  - POST /api/users/
+  - POST /api/messages/<int:user_id>/
+  - DELETE /api/books/<int:book_id>/
+  - DELETE /api/music/<int:music_id>/
+  - DELETE /api/users/<int:user_id>/
