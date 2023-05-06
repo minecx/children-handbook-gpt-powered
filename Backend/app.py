@@ -24,7 +24,7 @@ def get_books():
     get all books
     """
     books = [t.serialize() for t in Book.query.all()]
-    return json.dumps({"books": books}), 200
+    return json.dumps(books), 200
     
 @app.route("/api/books/<int:book_id>/")
 def get_book(book_id):
@@ -42,7 +42,7 @@ def get_all_music():
     get all musics
     """
     music = [t.serialize() for t in Music.query.all()]
-    return json.dumps({"music": music}), 200
+    return json.dumps({music}), 200
     
 @app.route("/api/music/<int:music_id>/")
 def get_music(music_id):
@@ -60,7 +60,7 @@ def get_users():
     get all users
     """
     users = [u.serialize() for u in User.query.all()]
-    return json.dumps({"users":users}), 200
+    return json.dumps({users}), 200
 
 @app.route("/api/users/<int:user_id>/")
 def get_user(user_id):
@@ -78,7 +78,7 @@ def get_messages():
     get all messages
     """
     messages = [m.serialize() for m in Message.query.all()]
-    return json.dumps({"messages": messages}), 200
+    return json.dumps({messages}), 200
 
 @app.route("/api/messages/<int:message_id>/")
 def get_message(message_id):

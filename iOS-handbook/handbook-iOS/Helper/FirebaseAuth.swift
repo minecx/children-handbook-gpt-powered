@@ -16,6 +16,15 @@ struct FirebaseAuth {
         
     private init() {}
     
+    func signOutWithGoogle() {
+        do {
+            print("sign out with google...")
+            try GIDSignIn.sharedInstance.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+    }
+    
     func signInWithGoogle(presenting: UIViewController, completion: @escaping (User) -> Void) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
