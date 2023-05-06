@@ -16,7 +16,27 @@ This page allows users to log in with their Google accounts. We used Google OAut
 
 ### Home Page
 
-We called it Discover View in our app. This page allows users to search for stories based on their children's interests. If the users are logged in and have a reading history, we will show a "Continue Reading" section for them (only used mock data for now). They will also be able to check out music for their kids.
+We called it `DiscoverView.swift` in our app. This page allows users to search for stories based on their children's interests. If the users are logged in and have a reading history, we will show a "Continue Reading" section for them (only used mock data for now). They will also be able to check out music for their kids.
+
+*Unfinished*: In this section, the user should also be able to bookmark books and musics, so they can come back to them later in the bookmark page below.
+
+### Bookmark Page
+
+*Unfinished*.
+
+What should happen here is that users can see their bookmarked stories and read them to their children, as mentioned above.
+
+### Chat Page
+
+We called it `ChatgptView.swift` in our app. This page allows users to chat with ChatGPT. We used OpenAI's ChatGPT to generate responses to users' questions. It features the original ChatGPT experience - ask the AI anytime, and it will provide a response. You can also create new chats and delete chats to categorize your conversations.
+
+### Profile Page
+
+This page allows users to log out of their accounts. They can also change their preferred name and avatar here for social purposes.
+
+*Unfinished*: meet and have a chat with other parents.
+
+### References
 
 During the development process, we consulted the following resources to integrate ChatGPT and Google OAuth into our iOS app:
 
