@@ -92,27 +92,21 @@ struct DiscoverView: View {
                     }
                     .padding(.horizontal)
                 }
-                
+
+                // fetch book from BE & render
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
-                        ForEach(books, id: \.self) { book in
-                            NavigationLink(destination: DetailedBookView(book: book)) {
-                                Image(book)
-                            }
+                        ForEach(fetchedBooks, id: \.self) { book in
+//                            NavigationLink(destination: DetailedBookView(book: book)) {
+                                Image(book.bookname)
+//                            }
                         }
+                    }
+                    .onAppear {
+                        getAllBooks()
                     }
                 }
                 .padding(.horizontal)
-                
-                // MARK: solely for testing purpose
-                HStack(spacing: genericPadding) {
-                    ForEach(fetchedBooks, id: \.self) { book in
-                        Text(book.bookname)
-                    }
-                }
-                .onAppear {
-                    getAllBooks()
-                }
                 
                 Text("Continue Reading")
                     .font(.title)
