@@ -68,3 +68,5 @@ During the development process, we consulted the following resources to integrat
 - Database Models
   - Book
   - Music
+  - User
+  - Message
