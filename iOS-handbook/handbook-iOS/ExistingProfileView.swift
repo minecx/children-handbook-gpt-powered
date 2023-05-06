@@ -34,11 +34,21 @@ struct ExistingProfileView: View {
                 
                 VStack{
                     HStack {
-                        Spacer()
                         Button {
                             //TODO:
                         } label: {
                             Text("Save")
+                                .font(Font.system(size: 16))
+                                .bold()
+                        }
+                        .padding(.trailing)
+
+                        Spacer()
+
+                        Button {
+                            UserDefaults.standard.setValue(false, forKey: "signIn")
+                        } label: {
+                            Text("Sign Out")
                                 .font(Font.system(size: 16))
                                 .bold()
                         }
