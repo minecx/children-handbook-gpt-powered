@@ -34,6 +34,14 @@ We called it `DiscoverView.swift` in our app. This page allows users to search f
 
 _Unfinished_: In this section, the user should also be able to bookmark books and musics, so they can come back to them later in the bookmark page below.
 
+### Detail Page
+
+When users click a book's cover image, the app will navigate them to the detail page to read the stories or play audio.
+
+<img src="images/story.png" width="300" height="600">
+
+_Unfinished_: In the music detail page, the app should enable audio playing and pausing.
+
 ### Bookmark Page
 
 _Unfinished_.
