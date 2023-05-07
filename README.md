@@ -18,9 +18,19 @@ This page allows users to log in with their Google accounts. We used Google OAut
 
 _Unfinished_: For Google Login, we encountered issues to reset UserDefaults. It may take a couple of times in order for sign in function to work. We plan to implement Apple Login and FaceBook Login, which required developer account.
 
+<img src="images/signup%26login.png" width="300" height="600">
+
+Login page:
+
+<img src="images/login.png" width="300" height="600">
+
+Sign out functionality is enabled in the Profile page below.
+
 ### Home Page
 
 We called it `DiscoverView.swift` in our app. This page allows users to search for stories based on their children's interests. If the users are logged in and have a reading history, we will show a "Continue Reading" section for them (only used mock data for now). They will also be able to check out music for their kids.
+
+<img src="images/discover.png" width="300" height="600">
 
 _Unfinished_: In this section, the user should also be able to bookmark books and musics, so they can come back to them later in the bookmark page below.
 
@@ -36,9 +46,19 @@ _Please refer to Setting Up section above to get ChatGPT connected_.
 
 We called it `ChatgptView.swift` in our app. This page allows users to chat with ChatGPT. We used OpenAI's ChatGPT to generate responses to users' questions. It features the original ChatGPT experience - ask the AI anytime, and it will provide a response. You can also create new chats and delete chats to categorize your conversations.
 
+<img src="images/chatHistory.png" width="300" height="600">
+
+<img src="images/chatHistoryDetail.png" width="300" height="600">
+
+We created shortcut questions for the users to ask, such as "Write a story", to allow the anxious parents to get a handy solution when caring for their children.
+
+<img src="images/chatStory.png" width="300" height="600">
+
 ### Profile Page
 
 This page allows users to log out of their accounts. They can also change their preferred name and avatar here for social purposes.
+
+<img src="images/profile.png" width="300" height="600">
 
 _Unfinished_: meet and have a chat with other parents.
 
