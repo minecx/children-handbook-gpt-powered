@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct DetailedBookView: View {
-    let book: String
+    let bookname: String
+    let story: String
     
     var body: some View {
         VStack {
-            Image(book)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding()
-            
-            Text(book)
+            Text(bookname)
+                .font(Font.title.weight(.bold))
+            Text(story)
+            Spacer()
         }
+        .padding()
     }
 }

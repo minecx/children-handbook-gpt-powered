@@ -91,7 +91,7 @@ struct DiscoverView: View {
                         ForEach(handbooks, id: \.self) { book in
                             VStack {
                                     VStack {
-                                        NavigationLink(destination: DetailedBookView(book: book.description)) {
+                                        NavigationLink(destination: DetailedBookView(bookname: book.bookname, story: book.story)) {
                                             AsyncImage(
                                                 url: URL(string: book.book_cover)!,
                                                 placeholder: {
@@ -137,13 +137,15 @@ struct DiscoverView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(1..<3) { index in
-                            NavigationLink(destination: DetailedBookView(book: books[index])) {
-                                VStack {
+                            VStack {
+                                NavigationLink(destination: DetailedBookView(bookname: books[index], story: "placeholder")) {
                                     Image(books[index])
                                         .frame(width: bookImageWidth, height: bookImageHeight, alignment: .center)
-                                    Text(books[index]).foregroundColor(.black)
-                                        .frame(width: bookImageWidth)
+                                        .cornerRadius(10, corners: .allCorners)
                                 }
+                                Text(books[index]).foregroundColor(.black)
+                                    .frame(width: bookImageWidth, height: 40)
+                                    .fixedSize(horizontal: true, vertical: false)
                             }
                         }
                     }
