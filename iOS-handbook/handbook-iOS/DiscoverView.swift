@@ -87,16 +87,19 @@ struct DiscoverView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(handbooks, id: \.self) { book in
-                            AsyncImage(
-                                url: URL(string: book.book_cover)!,
-                                placeholder: {
-                                    Text("Loading...")
-                                },
-                                image: { (uiImage: UIImage) -> Image in
-                                    Image(uiImage: uiImage)
-                                }
-                            )
-                            .frame(width: 100, height: 100)
+                            VStack {
+                                AsyncImage(
+                                    url: URL(string: book.book_cover)!,
+                                    placeholder: {
+                                        Text("Loading...")
+                                    },
+                                    image: { (uiImage: UIImage) -> Image in
+                                        Image(uiImage: uiImage).resizable()
+                                    }
+                                )
+                                .frame(width: 100, height: 100)
+                                Text(book.bookname)
+                            }
                         }
                     }
                     .onAppear {
