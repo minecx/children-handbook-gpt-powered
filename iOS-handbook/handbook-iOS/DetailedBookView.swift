@@ -15,7 +15,9 @@ struct DetailedBookView: View {
         VStack {
             Text(bookname)
                 .font(Font.title.weight(.bold))
-            Text(story)
+            ScrollView(.vertical) {
+                Text(story)
+            }
             Spacer()
         }
         .padding()
