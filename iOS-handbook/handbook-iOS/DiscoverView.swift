@@ -11,6 +11,8 @@ let backendURL = "http://35.236.214.238/api"
 
 let ourGray = Color(red: 153/255, green: 153/255, blue: 153/255)
 let genericPadding: CGFloat = 20
+let bookImageWidth: CGFloat = 117
+let bookImageHeight: CGFloat = 155
 let bookCategories = [
     "Bedtime",
     "Classic Tales",
@@ -97,8 +99,11 @@ struct DiscoverView: View {
                                         Image(uiImage: uiImage).resizable()
                                     }
                                 )
-                                .frame(width: 100, height: 100)
+                                .frame(width: bookImageWidth, height: bookImageHeight, alignment: .center)
+                                .cornerRadius(10, corners: .allCorners)
                                 Text(book.bookname)
+                                    .frame(width: bookImageWidth, height: 40)
+                                    .fixedSize(horizontal: true, vertical: false)
                             }
                         }
                     }
@@ -131,7 +136,9 @@ struct DiscoverView: View {
                             NavigationLink(destination: DetailedBookView(book: books[index])) {
                                 VStack {
                                     Image(books[index])
+                                        .frame(width: bookImageWidth, height: bookImageHeight, alignment: .center)
                                     Text(books[index]).foregroundColor(.black)
+                                        .frame(width: bookImageWidth)
                                 }
                             }
                         }
