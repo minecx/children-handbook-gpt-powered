@@ -90,20 +90,24 @@ struct DiscoverView: View {
                     HStack(spacing: genericPadding) {
                         ForEach(handbooks, id: \.self) { book in
                             VStack {
-                                AsyncImage(
-                                    url: URL(string: book.book_cover)!,
-                                    placeholder: {
-                                        Text("Loading...")
-                                    },
-                                    image: { (uiImage: UIImage) -> Image in
-                                        Image(uiImage: uiImage).resizable()
-                                    }
-                                )
-                                .frame(width: bookImageWidth, height: bookImageHeight, alignment: .center)
-                                .cornerRadius(10, corners: .allCorners)
-                                Text(book.bookname)
-                                    .frame(width: bookImageWidth, height: 40)
-                                    .fixedSize(horizontal: true, vertical: false)
+                                    VStack {
+                                        NavigationLink(destination: DetailedBookView(book: book.description)) {
+                                            AsyncImage(
+                                                url: URL(string: book.book_cover)!,
+                                                placeholder: {
+                                                    Text("Loading...")
+                                                },
+                                                image: { (uiImage: UIImage) -> Image in
+                                                    Image(uiImage: uiImage).resizable()
+                                                }
+                                            )
+                                            .frame(width: bookImageWidth, height: bookImageHeight, alignment: .center)
+                                            .cornerRadius(10, corners: .allCorners)
+                                        }
+                                        Text(book.bookname)
+                                            .frame(width: bookImageWidth, height: 40)
+                                            .fixedSize(horizontal: true, vertical: false)
+                                }
                             }
                         }
                     }
