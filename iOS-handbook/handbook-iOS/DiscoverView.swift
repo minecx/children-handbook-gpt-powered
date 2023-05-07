@@ -79,34 +79,34 @@ struct DiscoverView: View {
                 }
                 .padding(.horizontal)
                 
-                ScrollView(.horizontal) {
-                    HStack(spacing: genericPadding) {
-                        ForEach(0..<buttonStates.count) { index in
-                            Button(action: {
-                                switchCategory(index: index)
-                            }) {
-                                Text(bookCategories[index])
-                                    .foregroundColor(buttonStates[index] ? Color.blue : ourGray)
-                            }
-                        }
-                    }
-                    .padding(.horizontal)
-                }
+//                ScrollView(.horizontal) {
+//                    HStack(spacing: genericPadding) {
+//                        ForEach(0..<buttonStates.count) { index in
+//                            Button(action: {
+//                                switchCategory(index: index)
+//                            }) {
+//                                Text(bookCategories[index])
+//                                    .foregroundColor(buttonStates[index] ? Color.blue : ourGray)
+//                            }
+//                        }
+//                    }
+//                    .padding(.horizontal)
+//                }
 
                 // fetch book from BE & render
-                ScrollView(.horizontal) {
-                    HStack(spacing: genericPadding) {
-                        ForEach(fetchedBooks, id: \.self) { book in
-//                            NavigationLink(destination: DetailedBookView(book: book)) {
-                                Image(book.bookname)
-//                            }
-                        }
-                    }
-                    .onAppear {
-                        getAllBooks()
-                    }
-                }
-                .padding(.horizontal)
+//                ScrollView(.horizontal) {
+//                    HStack(spacing: genericPadding) {
+//                        ForEach(fetchedBooks, id: \.self) { book in
+////                            NavigationLink(destination: DetailedBookView(book: book)) {
+//                                Image(book.bookname)
+////                            }
+//                        }
+//                    }
+//                    .onAppear {
+//                        getAllBooks()
+//                    }
+//                }
+//                .padding(.horizontal)
                 
                 Text("Continue Reading")
                     .font(.title)

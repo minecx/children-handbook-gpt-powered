@@ -17,12 +17,13 @@ struct handbook_iOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            OnboardingView()
-                .environmentObject(userData)
-                .environmentObject(sharedData)
+//            OnboardingView()
+//                .environmentObject(userData)
+//                .environmentObject(sharedData)
 //             DiscoverView()
 //                 .environmentObject(userData)
 //            ChatTableView()
+            BookNetworkingView()
         }
     }
 }

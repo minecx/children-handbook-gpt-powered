@@ -40,6 +40,14 @@
 		8DA88D1729F9AA820018F601 /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA88D1629F9AA820018F601 /* CreateProfileView.swift */; };
 		8DA88D1929F9AAB20018F601 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA88D1829F9AAB20018F601 /* ImagePicker.swift */; };
 		8DC322922A05725400703641 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC322912A05725400703641 /* SharedData.swift */; };
+		8DC322942A05DE3800703641 /* BookImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC322932A05DE3800703641 /* BookImage.swift */; };
+		8DC3229A2A05E33200703641 /* BookFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC322992A05E33200703641 /* BookFetcher.swift */; };
+		8DC3229C2A05E3C800703641 /* BookAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3229B2A05E3C800703641 /* BookAPIService.swift */; };
+		8DC3229E2A05E45B00703641 /* BookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3229D2A05E45B00703641 /* BookRow.swift */; };
+		8DC322A02A05E71700703641 /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3229F2A05E71700703641 /* BookListView.swift */; };
+		8DC322A22A05E7CA00703641 /* BookNetworkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC322A12A05E7CA00703641 /* BookNetworkingView.swift */; };
+		8DC322A42A05E81800703641 /* BookErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC322A32A05E81800703641 /* BookErrorView.swift */; };
+		8DC322A62A05EBFF00703641 /* APIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC322A52A05EBFF00703641 /* APIServiceProtocol.swift */; };
 		8DF97B9229F8EB08005AE953 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF97B9129F8EB08005AE953 /* Config.swift */; };
 		8DFAAC612A051B0300FF0B0F /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAAC602A051B0300FF0B0F /* ChatTableView.swift */; };
 		8DFAAC632A051B2200FF0B0F /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAAC622A051B2200FF0B0F /* ChatRow.swift */; };
@@ -86,6 +94,14 @@
 		8DA88D1629F9AA820018F601 /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 		8DA88D1829F9AAB20018F601 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8DC322912A05725400703641 /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		8DC322932A05DE3800703641 /* BookImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookImage.swift; sourceTree = "<group>"; };
+		8DC322992A05E33200703641 /* BookFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFetcher.swift; sourceTree = "<group>"; };
+		8DC3229B2A05E3C800703641 /* BookAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAPIService.swift; sourceTree = "<group>"; };
+		8DC3229D2A05E45B00703641 /* BookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRow.swift; sourceTree = "<group>"; };
+		8DC3229F2A05E71700703641 /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
+		8DC322A12A05E7CA00703641 /* BookNetworkingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNetworkingView.swift; sourceTree = "<group>"; };
+		8DC322A32A05E81800703641 /* BookErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookErrorView.swift; sourceTree = "<group>"; };
+		8DC322A52A05EBFF00703641 /* APIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceProtocol.swift; sourceTree = "<group>"; };
 		8DF97B9129F8EB08005AE953 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		8DFAAC602A051B0300FF0B0F /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		8DFAAC622A051B2200FF0B0F /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
@@ -160,6 +176,46 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		8DC322952A05E2A800703641 /* DBFetch */ = {
+			isa = PBXGroup;
+			children = (
+				8DC322982A05E32300703641 /* Networking */,
+				8DC322972A05E2EA00703641 /* View */,
+				8DC322962A05E2C600703641 /* Model */,
+			);
+			path = DBFetch;
+			sourceTree = "<group>";
+		};
+		8DC322962A05E2C600703641 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C4F46B272A04B70800A7B1BE /* Book.swift */,
+				8DC322932A05DE3800703641 /* BookImage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8DC322972A05E2EA00703641 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8DC3229D2A05E45B00703641 /* BookRow.swift */,
+				8DC3229F2A05E71700703641 /* BookListView.swift */,
+				8DC322A12A05E7CA00703641 /* BookNetworkingView.swift */,
+				8DC322A32A05E81800703641 /* BookErrorView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8DC322982A05E32300703641 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8DC322992A05E33200703641 /* BookFetcher.swift */,
+				8DC3229B2A05E3C800703641 /* BookAPIService.swift */,
+				8DC322A52A05EBFF00703641 /* APIServiceProtocol.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		8DFAAC5F2A051AEF00FF0B0F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +249,7 @@
 		C4D99E4529F605D700FEFF0B /* handbook-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				8DC322952A05E2A800703641 /* DBFetch */,
 				8DFAAC5F2A051AEF00FF0B0F /* Chat */,
 				702597C52A02A61000783EFE /* Info.plist */,
 				702597BB2A02A2B100783EFE /* Helper */,
@@ -204,7 +261,6 @@
 				8DA88D0C29F8EF4A0018F601 /* ContentView.swift */,
 				C459F6AB29F8C11B00C24536 /* HomeView.swift */,
 				8DA88D0A29F8EB5E0018F601 /* DiscoverView.swift */,
-				C4F46B272A04B70800A7B1BE /* Book.swift */,
 				70B8DA0229F71BEC00F37B25 /* ChatgptView.swift */,
 				8DA88D1629F9AA820018F601 /* CreateProfileView.swift */,
 				8D848CB129FA5A3A00D3B878 /* ExistingProfileView.swift */,
@@ -329,28 +385,36 @@
 				702597C72A02A76200783EFE /* +View.swift in Sources */,
 				8DC322922A05725400703641 /* SharedData.swift in Sources */,
 				702597CB2A02DE4300783EFE /* User.swift in Sources */,
+				8DC322A22A05E7CA00703641 /* BookNetworkingView.swift in Sources */,
 				702597C92A02D58C00783EFE /* FirebaseAuth.swift in Sources */,
 				C4D99E4729F605D700FEFF0B /* handbook_iOSApp.swift in Sources */,
 				8D848CC029FC231000D3B878 /* ErrorView.swift in Sources */,
 				8D848CC629FC285000D3B878 /* APIerror.swift in Sources */,
 				C4F46B282A04B70800A7B1BE /* Book.swift in Sources */,
+				8DC322A02A05E71700703641 /* BookListView.swift in Sources */,
 				8D848CD329FD521900D3B878 /* BreedRow.swift in Sources */,
 				8DA88D1129F8F6000018F601 /* SignupView.swift in Sources */,
 				8D848CCE29FD408300D3B878 /* BreedListView.swift in Sources */,
+				8DC3229C2A05E3C800703641 /* BookAPIService.swift in Sources */,
 				8DF97B9229F8EB08005AE953 /* Config.swift in Sources */,
 				8DA88D0B29F8EB5E0018F601 /* DiscoverView.swift in Sources */,
 				8D848CBC29FC216300D3B878 /* BreedFetcher.swift in Sources */,
 				8DFAAC652A051D5B00FF0B0F /* ChatModel.swift in Sources */,
+				8DC3229A2A05E33200703641 /* BookFetcher.swift in Sources */,
 				C4F46B262A04B09E00A7B1BE /* DetailedMusicView.swift in Sources */,
+				8DC322A62A05EBFF00703641 /* APIServiceProtocol.swift in Sources */,
 				8DA88D1929F9AAB20018F601 /* ImagePicker.swift in Sources */,
 				8D848CB229FA5A3A00D3B878 /* ExistingProfileView.swift in Sources */,
+				8DC3229E2A05E45B00703641 /* BookRow.swift in Sources */,
 				8DFAAC612A051B0300FF0B0F /* ChatTableView.swift in Sources */,
 				8D848CD029FD467900D3B878 /* APIService.swift in Sources */,
 				8D848CB829FC1E1000D3B878 /* Breed.swift in Sources */,
+				8DC322942A05DE3800703641 /* BookImage.swift in Sources */,
 				8D848CB629FBB7D600D3B878 /* UploadStoryView.swift in Sources */,
 				8DFAAC692A052BA400FF0B0F /* ChatsViewModel.swift in Sources */,
 				8D848CD529FD525100D3B878 /* BreedDetailView.swift in Sources */,
 				8DA88D1529F8F6390018F601 /* MovingBubblesView.swift in Sources */,
+				8DC322A42A05E81800703641 /* BookErrorView.swift in Sources */,
 				8DFAAC672A0528C500FF0B0F /* DateHelper.swift in Sources */,
 				8DFAAC632A051B2200FF0B0F /* ChatRow.swift in Sources */,
 				8DA88D0F29F8F5D20018F601 /* OnboardingView.swift in Sources */,
