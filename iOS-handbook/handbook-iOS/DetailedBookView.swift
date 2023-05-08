@@ -20,6 +20,7 @@ struct DetailedBookView: View {
             }
             Spacer()
         }
-        .padding()
+        .padding(.bottom, 50)
+        .padding(.horizontal)
     }
 }
