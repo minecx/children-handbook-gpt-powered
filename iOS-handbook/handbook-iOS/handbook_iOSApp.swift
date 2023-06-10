@@ -26,9 +26,6 @@ struct handbook_iOSApp: App {
                     .environmentObject(userData)
                     .environmentObject(sharedData)
             }
-//             DiscoverView()
-//                 .environmentObject(userData)
-//            ChatTableView()
         }
     }
 }

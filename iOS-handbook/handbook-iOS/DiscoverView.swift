@@ -11,6 +11,8 @@ let backendURL = "http://35.236.214.238/api"
 
 let ourGray = Color(red: 153/255, green: 153/255, blue: 153/255)
 let genericPadding: CGFloat = 20
+let bookImageWidth: CGFloat = 117
+let bookImageHeight: CGFloat = 155
 let bookCategories = [
     "Bedtime",
     "Classic Tales",
@@ -34,32 +36,32 @@ let musics = [
 
 struct DiscoverView: View {
     
-    @State private var fetchedBooks: [Book] = []
     @State private var buttonStates = Array(repeating: false, count: bookCategories.count)
     @EnvironmentObject var userData: User
+
+    @State var handbooks = [Handbook]()
     
     var body: some View {
         NavigationView {
-            
             ScrollView(.vertical) {
 
                 HStack {
                     Text("Hello, \n\(userData.firstName)!")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    
+
                     Spacer()
-                    
+
                     Image("sample_avatar")
                 }
                 .padding(.horizontal)
-                
+
                 HStack {
                     Text("Books For You")
                         .font(.title)
-                    
+
                     Spacer()
-                    
+
                     Button(action: {
                         seeAllBooks()
                     }) {
@@ -68,7 +70,7 @@ struct DiscoverView: View {
                     }
                 }
                 .padding(.horizontal)
-                
+
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(0..<buttonStates.count) { index in
@@ -86,46 +88,76 @@ struct DiscoverView: View {
                 // fetch book from BE & render
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
-                        ForEach(fetchedBooks, id: \.self) { book in
+                        ForEach(handbooks, id: \.self) { book in
                             VStack {
-                                Image(book.bookname)
-                                Text(book.bookname)
+                                    VStack {
+                                        NavigationLink(destination: DetailedBookView(bookname: book.bookname, story: book.story)) {
+                                            AsyncImage(
+                                                url: URL(string: book.book_cover)!,
+                                                placeholder: {
+                                                    Text("Loading...")
+                                                },
+                                                image: { (uiImage: UIImage) -> Image in
+                                                    Image(uiImage: uiImage).resizable()
+                                                }
+                                            )
+                                            .frame(width: bookImageWidth, height: bookImageHeight, alignment: .center)
+                                            .cornerRadius(10, corners: .allCorners)
+                                        }
+                                        Text(book.bookname)
+                                            .frame(width: bookImageWidth, height: 40)
+                                            .fixedSize(horizontal: true, vertical: false)
+                                }
                             }
                         }
                     }
                     .onAppear {
-                        getAllBooks()
+                        getHandbooks()
                     }
                 }
                 .padding(.horizontal)
                 
+                ScrollView(.horizontal) {
+                    HStack(spacing: genericPadding) {
+                        List(handbooks, id: \.id) { item in
+                            VStack(alignment: .leading) {
+                                Text(item.description)
+                                Text(item.bookname)
+                            }
+                        }.onAppear(perform: getHandbooks)
+                    }
+                }
                 Text("Continue Reading")
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     // padding left
                     .padding(.leading)
-                
+
                 // TODO: hide if none found in history
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(1..<3) { index in
-                            NavigationLink(destination: DetailedBookView(book: books[index])) {
-                                VStack {
+                            VStack {
+                                NavigationLink(destination: DetailedBookView(bookname: books[index], story: "placeholder")) {
                                     Image(books[index])
-                                    Text(books[index]).foregroundColor(.black)
+                                        .frame(width: bookImageWidth, height: bookImageHeight, alignment: .center)
+                                        .cornerRadius(10, corners: .allCorners)
                                 }
+                                Text(books[index]).foregroundColor(.black)
+                                    .frame(width: bookImageWidth, height: 40)
+                                    .fixedSize(horizontal: true, vertical: false)
                             }
                         }
                     }
                 }
                 .padding(.horizontal)
-                
+
                 HStack {
                     Text("Music Ignites")
                         .font(.title)
-                    
+
                     Spacer()
-                    
+
                     Button(action: {
                         seeAllMusic()
                     }) {
@@ -134,7 +166,7 @@ struct DiscoverView: View {
                     }
                 }
                 .padding(.horizontal)
-                
+
                 ScrollView(.horizontal) {
                     HStack(spacing: genericPadding) {
                         ForEach(musics, id: \.self) { mus in
@@ -148,50 +180,33 @@ struct DiscoverView: View {
                     }
                 }
                 .padding(.horizontal)
-                
+
             }
             .padding(.top)
             .padding(.bottom, 50)
         }
     }
-
-    func getAllBooks() {
-        let url = URL(string: "\(backendURL)/books")!
+    
+    func getHandbooks() {
+        guard let url = URL(string: "\(backendURL)/books") else {
+            print("Invalid URL")
+            return
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                // network error
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                // Handle invalid HTTP response
-                print("Invalid response")
-                return
-            }
-            
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
-                if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let bookArray = json["books"] as? [[String: Any]] {
-                    do {
-                        let jsonData = try JSONSerialization.data(withJSONObject: bookArray, options: [])
-                        let decodedResponse = try JSONDecoder().decode([Book].self, from: jsonData)
-                        DispatchQueue.main.async {
-                            self.fetchedBooks = decodedResponse
-                        }
-                    } catch {
-                        print("Error decoding JSON: \(error)")
+                if let response = try? JSONDecoder().decode([Handbook].self, from: data) {
+                    DispatchQueue.main.async {
+                        self.handbooks = response
                     }
+                    return
                 }
             }
-        }
-        task.resume()
+        }.resume()
     }
-    
+
     func seeAllBooks() {
         print("tapped see all book button")
     }
